@@ -1,0 +1,13 @@
+ {
+  protocolVersion: 0,
+  id: 'HWnTMizyGZbbEFrMvPPEJa3JoGyb5TCMiGEEZaom9Dbq',
+  publicKeys: [
+    {
+      id: 0,
+      type: 0,
+      data: 'A759mLpK+BS4ewWs313wEsY36oOt9N3fj6ImKQ0yTupX'
+    }
+  ],
+  balance: 0,
+  revision: 0
+}
