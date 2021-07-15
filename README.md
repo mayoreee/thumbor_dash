@@ -2,7 +2,7 @@
 A thumbor server extension for DASH
 # Usage
 
-Create a custom thumbor configuration file (.conf)
+Add to thumbor server config file
 
 ```python
 from thumbor.handler_lists import BUILTIN_HANDLERS
