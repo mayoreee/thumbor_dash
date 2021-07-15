@@ -1,5 +1,5 @@
 # thumbor_dash
-A thubmor server extension for DASH
+A thumbor server extension for DASH
 # Usage
 
 Create a custom thumbor configuration file (.conf)
