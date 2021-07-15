@@ -2,7 +2,7 @@
 A thubmor server extension for DASH
 # Usage
 
-Create a custom thumbor configuration file (dash.conf)
+Create a custom thumbor configuration file (.conf)
 
 ````
 from thumbor.handler_lists import BUILTIN_HANDLERS
