@@ -4,7 +4,7 @@ A thubmor server extension for DASH
 
 Create a custom thumbor configuration file (.conf)
 
-````
+```python
 from thumbor.handler_lists import BUILTIN_HANDLERS
 
 
@@ -21,4 +21,4 @@ MIN_WIDTH = 1
 MIN_HEIGHT = 1
 MAX_WIDTH = 1200
 MAX_HEIGHT = 800
-````
+```
