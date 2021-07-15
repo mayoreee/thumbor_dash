@@ -16,7 +16,7 @@ DASHAUTH_ROUTE = '/dashauth'
 
 URL_SIGNER = 'thumbor_dash.url_signers.base64_hmac_sha1'
 
-//Set allowed thumbnail size
+# Set allowed thumbnail size
 MIN_WIDTH = 1 
 MIN_HEIGHT = 1
 MAX_WIDTH = 1200
