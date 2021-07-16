@@ -9,7 +9,7 @@ import base64
 GRPC_REQUEST_TIMEOUT = 10000
 
 # Set up connection
-channel = grpc.insecure_channel('54.185.249.226:3010')
+channel = grpc.insecure_channel('seed-1.testnet.networks.dash.org:3010')
 stub = platform_pb2_grpc.PlatformStub(channel)
 
 
@@ -29,7 +29,7 @@ def get_documents(data) :
     # print(docs)
     for d in docs.documents:
         print('Document cbor: {}\n'.format(cbor2.loads(d)))
-    return docs
+    return docs.documents
 
 
 
