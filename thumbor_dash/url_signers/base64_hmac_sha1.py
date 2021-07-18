@@ -14,8 +14,9 @@ class UrlSigner(BaseUrlSigner):
     """
 
     def signature(self, url):
+        SIGNATURE_KEY = b'0'
         return base64.urlsafe_b64encode(
             hmac.new(
-                0, text_type(url).encode("utf-8"), hashlib.sha1
+                SIGNATURE_KEY, text_type(url).encode("utf-8"), hashlib.sha1
             ).digest()
         )
