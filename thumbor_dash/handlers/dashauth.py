@@ -1,7 +1,9 @@
-from thumbor_dash.verifiers.verifiers import verifyThumbnailSize, verifyURLField
+from thumbor_dash.verifiers import url_field_verifier, image_size_verifier, access_status_verifier, thumbnail_size_verifier
 from thumbor.handlers import BaseHandler
 from tornado.escape import json_decode
-from thumbor_dash.dapi import dapiclient 
+from thumbor_dash.dapiclient import dapiclient 
+import base58
+import cbor2
 
 class DashAuthHandler(BaseHandler):
     """Custom HTTP request handler class for ``dashauth``"""
@@ -26,25 +28,39 @@ class DashAuthHandler(BaseHandler):
         ownerId = body["owner"] # the owner of the document that is being requested
         updatedAt = body["updatedAt"] # the last time the document was updated
 
-        # DAPI thumbnail document request input data
-        data = {
-            'contract_id': contractId,
-            'document_type': documentType,
-            'where': [
-                ['$ownerId', '==', ownerId],
-                ['updatedAt', '==', updatedAt]
-            ]
-        }
+        # Verify user access status
+        checkAccessStatus = access_status_verifier.verifyUserAccessStatus(requesterId)
 
 
-        #TODO: Fix DAPI client 
-        thumbnail_document = dapiclient.get_documents(data)
+        if checkAccessStatus:
 
-        if verifyURLField(thumbnail_document, field) & verifyThumbnailSize(thumbnail_width, thumbnail_height, MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT):
-           super().prepare()
+             # DAPI thumbnail document request input data
+             data = {
+                 'contract_id': base58.b58decode(contractId),
+                 'document_type': documentType,
+                 'where': cbor2.dumps([
+                     ['$ownerId', '==', base58.b58decode(ownerId)],
+                     ['$updatedAt', '==', updatedAt],
+                     ]),
+                }  
+             # Query DAPI for thubmnail document data
+             thumbnail_document = dapiclient.get_documents(data)
+
+             #Request verification
+             checkURLField = url_field_verifier.verifyURLField(thumbnail_document, field) # Verify url field
+             checkThumbnailSize = thumbnail_size_verifier.verifyThumbnailSize(thumbnail_width, thumbnail_height, MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT) # Verify requested thumbnail size
+             checkImageSize = image_size_verifier.verifyImageSize() #TODO: #TODO: Remove this check permanently. Since Thumbor does this check by default, this verification is only redundant.
+      
+        
+             if checkURLField & checkThumbnailSize & checkImageSize:
+                 super().prepare()
+             else:
+                 #TODO: Handle custom errors as regards bad/unallowed request types
+                 super().prepare() #remove this when custom errors are available
+
         else:
-            #TODO: Handle custom errors
-            super().prepare() #remove this when custom errors are available
+             #TODO: Handle custom errors as regards user moderation
+                 super().prepare() #remove this when custom errors are available
 
 
 
