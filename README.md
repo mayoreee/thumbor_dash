@@ -21,7 +21,6 @@ Note: thumbor_dash, thumbor, and other required dependencies will be installed
 
 ```python
 
-import thumbor_dash
 from thumbor.handler_lists import BUILTIN_HANDLERS
 
 
@@ -44,3 +43,5 @@ MAX_HEIGHT = 800
 
 #### 4. Run thumbor server with the configuration file
   `thumbor --conf=thumbor.conf`
+
+
