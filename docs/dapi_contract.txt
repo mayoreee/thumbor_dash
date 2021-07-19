@@ -1,14 +1,14 @@
  {
   protocolVersion: 0,
   type: 0,
-  signature: 'IJ4mRoD852HgTcgDMpGDCUcPuSJEVtAHK5ifu7hgT49rQXhHhSakmcnilN+X7NEKEYoFw70LUN73HH141dZxq94=',
+  signature: 'H0ZoZ9ixneSEKyPR2g91WBvhXtxJOC8hVFlBZjGT/MD6Sa/66lzIPlSbZPTZGeLFHGNQRRR8tZPdT+VHmltb9x4=',
   signaturePublicKeyId: 0,
   dataContract: {
     protocolVersion: 0,
-    '$id': 'BoPsUbRjBfUEEiLj4M7ZqD5dFVwhQgA53DtrxZ5D3TyP',
+    '$id': '4sTfrKQfPCvutR7XG4Hgj3vMB22VP86RthcMnicwgGLu',
     '$schema': 'https://schema.dash.org/dpp-0-4-0/meta/data-contract',
     ownerId: 'HWnTMizyGZbbEFrMvPPEJa3JoGyb5TCMiGEEZaom9Dbq',
     documents: { documents: [Object] }
   },
-  entropy: 'Zu8V3TY7MxZXLw/PqhrEO3mTNt130ayTQA5RbPWzKpc='
+  entropy: '5cjoDES59IZ0bwGSeoAihydLrUQWiebbSqZtWMOitg0='
 }

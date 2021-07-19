@@ -1,7 +1,6 @@
 {
-    contractId: "BoPsUbRjBfUEEiLj4M7ZqD5dFVwhQgA53DtrxZ5D3TyP",
+    contractId: "4sTfrKQfPCvutR7XG4Hgj3vMB22VP86RthcMnicwgGLu",
     documentType: "profile",
     field: "avatarUrl",
-    updatedAt: Date.now(),
     resizeValues: [[1, 1], [1200, 800]]
 }
