@@ -47,7 +47,7 @@ class DashAuthHandler(BaseHandler):
                 }  
 
              # Query DAPI for thumbnail document data
-             thumbnail_document = dapiclient.get_documents(data)
+             thumbnail_document = dapiclient.getDocuments(data)
 
              #Request verification
              checkURLField = url_field_verifier.verifyURLField(thumbnail_document, field) # Verify url field
