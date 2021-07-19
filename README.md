@@ -6,25 +6,18 @@ A thumbor server extension for DASH
 
 #### Requirements
 - Python >= 3.9
+- Thumbor >= 7.0.0
 - pip >= 21.1
 
-#### 1. Clone the repo
-`git clone https://github.com/mayoreee/thumbor_dash.git`
+#### 1. Install thumbor_dash
+`pip install thumbor_dash`
 
-`cd thumbor_dash`
+Note: thumbor_dash, thumbor, and other required dependencies will be installed
 
-#### 2. Create a virtual environment
-`python3 -m venv /path/to/new/virtual/environment`
-
-Then, activate the virtual environment as described [here](https://docs.python.org/3/library/venv.html)
-
-#### 3. Install thumbor_dash and its dependencies
-  `pip install .    `
-
-#### 4. Create a configuration file
+#### 2. Create a thumbor configuration file
   `thumbor-config > thumbor.conf`
 
-#### 5. Add to `thumbor.conf` file
+#### 3. Add to `thumbor.conf` file
 
 ```python
 
@@ -49,5 +42,5 @@ MAX_WIDTH = 1200
 MAX_HEIGHT = 800
 ```
 
-#### 6. Run thumbor server with the configuration file
+#### 4. Run thumbor server with the configuration file
   `thumbor --conf=thumbor.conf`
