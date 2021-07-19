@@ -1,9 +1,12 @@
+import tornado
+from tornado.web import HTTPError
 from thumbor_dash.verifiers import url_field_verifier, image_size_verifier, access_status_verifier, thumbnail_size_verifier
 from thumbor.handlers import BaseHandler
 from tornado.escape import json_decode
 from thumbor_dash.dapiclient import dapiclient 
 import base58
 import cbor2
+
 
 class DashAuthHandler(BaseHandler):
     """Custom HTTP request handler class for ``dashauth``"""
@@ -33,7 +36,6 @@ class DashAuthHandler(BaseHandler):
 
 
         if checkAccessStatus:
-
              # DAPI thumbnail document request input data
              data = {
                  'contract_id': base58.b58decode(contractId),
@@ -43,24 +45,22 @@ class DashAuthHandler(BaseHandler):
                      ['$updatedAt', '==', updatedAt],
                      ]),
                 }  
-             # Query DAPI for thubmnail document data
+
+             # Query DAPI for thumbnail document data
              thumbnail_document = dapiclient.get_documents(data)
 
              #Request verification
              checkURLField = url_field_verifier.verifyURLField(thumbnail_document, field) # Verify url field
              checkThumbnailSize = thumbnail_size_verifier.verifyThumbnailSize(thumbnail_width, thumbnail_height, MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT) # Verify requested thumbnail size
-             checkImageSize = image_size_verifier.verifyImageSize() #TODO: #TODO: Remove this check permanently. Since Thumbor does this check by default, this verification is only redundant.
+             checkImageSize = image_size_verifier.verifyImageSize() #TODO: Remove this check permanently. Since Thumbor does this check by default, this verification is only redundant.
       
         
-             if checkURLField & checkThumbnailSize & checkImageSize:
+             if checkURLField and checkThumbnailSize and checkImageSize:
                  super().prepare()
              else:
-                 #TODO: Handle custom errors as regards bad/unallowed request types
-                 super().prepare() #remove this when custom errors are available
-
+                raise HTTPError(status_code=400, log_message="Badly formatted or unallowed request") #TODO: Update when custom errors are available
         else:
-             #TODO: Handle custom errors as regards user moderation
-                 super().prepare() #remove this when custom errors are available
+            raise HTTPError(status_code=403, log_message="Permission denied. Requester is temporarily banned") #TODO: Update when custom errors are available
 
 
 
