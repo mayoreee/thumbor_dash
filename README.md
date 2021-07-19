@@ -21,8 +21,6 @@ Then, activate the virtual environment as described [here](https://docs.python.o
 #### 3. Install thumbor_dash and its dependencies
   `pip install .    `
 
-Then, activate the virtual environment
-
 #### 4. Create a configuration file
   `thumbor-config > thumbor.conf`
 
