@@ -12,7 +12,9 @@ A thumbor server extension for DASH
 #### 1. Install thumbor_dash
 `pip install thumbor_dash`
 
-#### 2. Create a configuration file
+Note: thumbor_dash, thumbor, and other required dependencies will be installed
+
+#### 2. Create a thumbor configuration file
   `thumbor-config > thumbor.conf`
 
 #### 3. Add to `thumbor.conf` file
