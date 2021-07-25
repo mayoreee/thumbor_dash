@@ -1,0 +1,1 @@
+http://localhost:8888/Ai-ZyWWtJ0MHUQAm0GAlBTQMZ_Y=/1200x800/dashauth:requester(GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7):contract(En3GRoMNAnt69firp32h3NEBxyveLcHQMUbwhDW2UqoX):document(thumbnailField):field(avatarUrl):owner(GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7):updatedAt(1627076771396)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg

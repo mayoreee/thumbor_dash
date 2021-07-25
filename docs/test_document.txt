@@ -1,0 +1,22 @@
+{
+    ownerId: Buffer.from(bs58.decode("GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7")),
+    contractId: "En3GRoMNAnt69firp32h3NEBxyveLcHQMUbwhDW2UqoX",
+    documentType: "profile",
+    field: "avatarUrl",
+    resizeValues: [1, 1, 1200, 800]
+}
+
+ {
+  '$protocolVersion': 0,
+  '$id': '8RRth71JdR2wVN6mB39tGTytjxTtDrzDE3Tcovj9jML4',
+  '$type': 'thumbnailField',
+  '$dataContractId': 'En3GRoMNAnt69firp32h3NEBxyveLcHQMUbwhDW2UqoX',
+  '$ownerId': 'GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7',
+  '$revision': 1,
+  field: 'avatarUrl',
+  ownerId: 'GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7',
+  contractId: 'En3GRoMNAnt69firp32h3NEBxyveLcHQMUbwhDW2UqoX',
+  documentType: 'profile',
+  resizeValues: [ 1, 1, 1200, 800 ],
+  '$updatedAt': 1627076771396
+}
