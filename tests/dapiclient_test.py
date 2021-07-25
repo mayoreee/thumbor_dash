@@ -23,11 +23,11 @@ def getDocuments(data):
 
 def main():
     data = {
-        'contract_id': base58.b58decode('4sTfrKQfPCvutR7XG4Hgj3vMB22VP86RthcMnicwgGLu'),
-        'document_type': 'documents',
+        'contract_id': base58.b58decode('En3GRoMNAnt69firp32h3NEBxyveLcHQMUbwhDW2UqoX'),
+        'document_type': 'thumbnailField',
         'where': cbor2.dumps([
-            ['$ownerId', '==', base58.b58decode('HWnTMizyGZbbEFrMvPPEJa3JoGyb5TCMiGEEZaom9Dbq')],
-            ['$updatedAt', '==', 1626652853407],
+            ['ownerId', '==', base58.b58decode('GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7')],
+            ['$updatedAt', '==', 1627076771396],
         ]),
     }
     result = getDocuments(data)    
@@ -36,5 +36,7 @@ def main():
    
 if __name__ == "__main__":
     main()
+
+
 
 

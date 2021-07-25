@@ -1,4 +1,6 @@
 ''' Check whether the original image size is within allowed bounds'''
-def verifyImageSize(doc, field):
-    #TODO: Remove this method permanently. Since Thumbor does this check by default, this verification is only redundant.
-    return True
+def verifyImageSize(thumbnail_width, thumbnail_height, MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT):
+    if thumbnail_width >= MIN_WIDTH and thumbnail_width <= MAX_WIDTH and thumbnail_height >= MIN_HEIGHT and thumbnail_height <= MAX_HEIGHT:
+        return True
+    else:
+        return False 

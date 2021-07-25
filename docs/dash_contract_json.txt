@@ -1,88 +1,66 @@
 {
-    "documents": {
-      "indices": [
-        {
-          "properties": [
-            {
-              "$ownerId": "asc"
-            },
-            {
-              "$updatedAt": "asc",
-            },
-          ]
-        }
-      ],
-      "properties": {
-        "contractId": {
-          "type": "string",
-          "pattern": "^([A-Za-z0-9+/])*$",
-          "maxLength": 60,
-          "minLength": 43
-        },
-        "documentType": {
-          "type": "string",
-          "maxLength": 256
-        },
-        "field": {
-          "type": "string",
-          "maxLength": 256
-        },
-        "maxImportSize": {
-          "type": "integer"
-        },
-        "cacheDuration": {
-          "type": "integer"
-        },
-        "resizeValues": {
-          "type": "array",
-          "contains": {
+    "thumbnailField": {
+        "type": "object",
+        "properties": {
+          "ownerId":{
             "type": "array",
-            "contains": {
-              "type": "number"
-            },
+            "byteArray": true,
+            "minItems": 32,
+            "maxItems": 32,
+            "contentMediaType": "application/x.dash.dpp.identifier"
           },
-          "items": [
-            {
-              "type": "array",
-              "items": [
-                {
-                  "type": "integer"
-                },
-                {
-                  "type": "integer"
-                }
-              ],
-              "additionalItems": false
+          "contractId": {
+            "type": "string",
+            "pattern": "^([A-Za-z0-9+/])*$",
+            "maxLength": 60,
+            "minLength": 43
+          },
+          "documentType": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "field": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "maxImportSize": {
+            "type": "integer"
+          },
+          "cacheDuration": {
+            "type": "integer"
+          },
+          "resizeValues": {
+            "type": "array",
+            "items": {
+              "type": "number",
             },
-            {
-              "type": "array",
-              "items": [
-                {
-                  "type": "integer"
-                },
-                {
-                  "type": "integer"
-                }
-              ],
-              "additionalItems": false
-            }
-          ],
-          "additionalItems": false
+            "minItems": 4,
+            "maxItems": 4,
+          },
+          "allowAnimatedGIFs": {
+            "type": "boolean"
+          }
         },
-        "allowAnimatedGIFs": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "$ownerId",
-        "$updatedAt",
-        "$createdAt",
-        "contractId",
-        "documentType",
-        "field",
-        "updatedAt",
-        "resizeValues"
-      ],
-      "additionalProperties": false
+        "indices": [
+          {
+            "properties": [
+              {
+                "ownerId": "asc"
+              },
+              {
+                "$updatedAt": "asc",
+              },
+            ]
+          }
+        ],
+        "required": [
+          "ownerId",
+          "$updatedAt",
+          "contractId", 
+          "documentType", 
+          "field", 
+          "resizeValues"
+        ],
+        "additionalProperties":false
     }
   }
