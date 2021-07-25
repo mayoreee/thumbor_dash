@@ -30,6 +30,9 @@ MAX_HEIGHT = 800
 
 # Set security key
 SECURITY_KEY = "0"
+
+# Use only signed URL
+ALLOW_UNSAFE_URL = False
 ```
 
 ## Usage
