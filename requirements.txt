@@ -3,7 +3,7 @@ cbor2>=5.4.0
 certifi>=2021.5.30
 charset-normalizer>=2.0.3
 colorful>=0.5.4
-dapiclient @ git+https://github.com/mayoreee/dapi-client-py.git
+dapiclient>=0.0.1
 derpconf>=0.8.3
 grpcio>=1.39.0
 idna>=3.2
