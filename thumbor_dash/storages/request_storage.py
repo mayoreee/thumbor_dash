@@ -8,18 +8,19 @@ from shutil import move
 from typing import ContextManager
 from uuid import uuid4
 from thumbor import storages
+from os.path import expanduser,  join
 
-from thumbor.storages import BaseStorage
 from thumbor.utils import logger
-from thumbor_dash.request_storage import REQUEST_STORAGE_ROOT_PATH
 from thumbor.context import Context
 
+home = expanduser("~")
+REQUEST_STORAGE_ROOT_PATH = join(home, 'thumbor', 'request_storage')
+STORAGE_EXPIRATION_SECONDS = 60 * 60 * 24  # one day
 
-
-class RequestStorage(BaseStorage):
+class RequestStorage:
     
     async def put(self, requester_id, file_bytes):
-        file_abs = self.path_on_filesystem(requester_id)
+        file_abspath = self.path_on_filesystem(requester_id)
         temp_abspath = "%s.%s" % (file_abspath, str(uuid4()).replace("-", ""))
         file_dir_abspath = dirname(file_abspath)
 
@@ -54,13 +55,33 @@ class RequestStorage(BaseStorage):
 
         with open(self.path_on_filesystem(requester_id), "rb") as source_file:
             return source_file.read()
+
+    async def exists(
+        self, path, path_on_filesystem=None
+    ):
+        if path_on_filesystem is None:
+            path_on_filesystem = self.path_on_filesystem(path)
+        return os.path.exists(path_on_filesystem) and not self.__is_expired(
+            path_on_filesystem
+        )
+
+    async def remove(self, path):
+        n_path = self.path_on_filesystem(path)
+        return os.remove(n_path)
+
+    def ensure_dir(self, path):
+        if not exists(path):
+            try:
+                os.makedirs(path)
+            except OSError as err:
+                # FILE ALREADY EXISTS = 17
+                if err.errno != 17:
+                    raise
     
-# #Usage
-# data = {"requesterId": "requesterId"}
-# file_bytes = json.dumps(data).encode('utf-8')
-
-# print(file_bytes)
-# print(type(file_bytes))
-
+    def __is_expired(self, path):
+        if STORAGE_EXPIRATION_SECONDS is None:
+            return False
+        timediff = datetime.now() - datetime.fromtimestamp(getmtime(path))
+        return timediff.total_seconds() > STORAGE_EXPIRATION_SECONDS
 
 

@@ -8,6 +8,7 @@ from thumbor_dash.verifiers import url_field_verifier, image_size_verifier, acce
 from thumbor_dash.dapiclient import dapiclient 
 from thumbor_dash.utils import dashauthParametersToJson
 
+
 from thumbor.handlers.imaging import ImagingHandler
 
 
@@ -111,8 +112,7 @@ class ThumborDashImagingHandler(ImagingHandler):
 
         # Verify user access status
         print("Thumbor DASH STATUS: Verifying requester access status........" )
-        checkAccessStatus = access_status_verifier.verifyUserAccessStatus(requesterId)
-
+        checkAccessStatus = await access_status_verifier.verifyUserAccessStatus(requesterId, config)
 
         if checkAccessStatus:
              # DAPI thumbnail document request input data
