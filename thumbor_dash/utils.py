@@ -1,4 +1,4 @@
-
+from datetime import datetime
 
 def dashauthParametersToJson(params):
     temp = params.split(":")
@@ -16,4 +16,8 @@ def dashauthParametersToJson(params):
         result[key] = real_value
 
     return result
-        
+
+
+def datetimeToMillisecondsSinceEpoch(dt):
+    epoch = datetime.utcfromtimestamp(0)
+    return (dt - epoch).total_seconds() * 1000.0

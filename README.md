@@ -33,6 +33,11 @@ SECURITY_KEY = "0"
 
 # Use only signed URL
 ALLOW_UNSAFE_URL = False
+
+# Set user moderation rules
+REQUEST_TIME_LIMIT = 1 # time between requests in minutes
+USAGE_VIOLATION_LIMIT = 5 # total number of times a requester can violate the time limit before ban
+BAN_DURATION = 10 # requester ban duration in minutes
 ```
 
 ## Usage
