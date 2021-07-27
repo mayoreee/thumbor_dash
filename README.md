@@ -8,6 +8,7 @@ A thumbor server extension for DASH
 
 - Python >= 3.9
 - Pip >= 21.1
+- Thumbor == 7.0.0a5
 
 See the requirements for setting up `thumbor` in the [documentation](https://thumbor.readthedocs.io/en/latest/installing.html)
 
@@ -50,24 +51,40 @@ BAN_DURATION = 10 # requester ban duration in minutes
 
 #### 2. Sign image URL
 
-   `thumbor_dash-url --key=<securityKey; must be "0"> --width=<width> --height=<height> --dashauth=<dashauth> --filters=<filters> <imageURL>`
+   ```python
+
+   thumbor_dash-url --key="0" --width=<width> --height=<height> --dashauth="requester(<requesterId>):contract(<contractId>):document(<documentType>):field(<avatarUrl>):owner(<ownerId>):updatedAt(<updatedAt>)" --filters="<filters>" <imageURL>
+
+   ```
 
 `output:`
 
-   `/<signature>/<width>x<height>/dashauth:requester(<requesterId>):contract(<contractId>):document(<documentType>):field(<field>):owner(<ownerId>):updatedAt(<updatedAt>)/filters:format(<format>)/<encodedImageUrl>`
+   ```python
+
+   /<signature>/<width>x<height>/dashauth:requester(<requesterId>):contract(<contractId>):document(<documentType>):field(<field>):owner(<ownerId>):updatedAt(<updatedAt>)/filters:format(<format>)/<encodedImageUrl>
+
+   ```
 
 #### 3. Thumbor_dash image retrieval URL
 
-   `http://<thumbor_dash-server>/<signature>/<width>x<height>/dashauth:requester(<requesterId>):contract(<contractId>):document(<documentType>):field(<field>):owner(<ownerId>):updatedAt(<updatedAt>)/filters:format(<format>)/<encodedImageUrl>`
+   ```python
+   http://<thumbor_dash-server>/<signature>/<width>x<height>/dashauth:requester(<requesterId>):contract(<contractId>):document(<documentType>):field(<field>):owner(<ownerId>):updatedAt(<updatedAt>)/filters:format(<format>)/<encodedImageUrl>
+   
+   ```
 
-   Note: If running the server locally, <thumbor_dash-server> should be `localhost:8888`
+   Note: If running the server locally, `<thumbor_dash-server>` should be `localhost:8888`
 
 
 ## Example
 
  This is a signed `thumbor_dash url`. Simply run `thumbor_dash` and paste this link in your browser.
 
-   `http://localhost:8888/Ai-ZyWWtJ0MHUQAm0GAlBTQMZ_Y=/1200x800/dashauth:requester(GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7):contract(En3GRoMNAnt69firp32h3NEBxyveLcHQMUbwhDW2UqoX):document(thumbnailField):field(avatarUrl):owner(GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7):updatedAt(1627076771396)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg`
+   ```python
+
+   http://localhost:8888/Ai-ZyWWtJ0MHUQAm0GAlBTQMZ_Y=/1200x800/dashauth:requester(GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7):contract(En3GRoMNAnt69firp32h3NEBxyveLcHQMUbwhDW2UqoX):document(thumbnailField):field(avatarUrl):owner(GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7):updatedAt(1627076771396)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg
+   
+   ```
+
 
 
 
