@@ -8,6 +8,7 @@ A thumbor server extension for DASH
 
 - Python >= 3.9
 - Pip >= 21.1
+- Thumbor == 7.0.0a5
 
 See the requirements for setting up `thumbor` in the [documentation](https://thumbor.readthedocs.io/en/latest/installing.html)
 
