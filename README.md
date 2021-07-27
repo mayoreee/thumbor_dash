@@ -9,17 +9,19 @@ A thumbor server extension for DASH
 - Python >= 3.9
 - Pip >= 21.1
 
-1. Install thumbor_dash
+See the requirements for setting up `thumbor` in the [documentation](https://thumbor.readthedocs.io/en/latest/installing.html)
+
+#### 1. Install thumbor_dash
 
 `pip install thumbor_dash`
 
 Note: thumbor_dash, thumbor, and other required dependencies will be installed
 
-2. Create a thumbor configuration file
+#### 2. Create a thumbor configuration file
   
 `thumbor-config > thumbor.conf`
 
-3. Add these lines to `thumbor.conf` file
+#### 3. Add these lines to `thumbor.conf` file
 
 ```python
 # Set allowed dimensions
@@ -42,19 +44,19 @@ BAN_DURATION = 10 # requester ban duration in minutes
 
 ## Usage
 
-1. Start thumbor_dash server
+#### 1. Start thumbor_dash server
 
    `thumbor_dash --conf=thumbor.conf`
 
-2. Sign image URL
+#### 2. Sign image URL
 
    `thumbor_dash-url --key=<securityKey; must be "0"> --width=<width> --height=<height> --dashauth=<dashauth> --filters=<filters> <imageURL>`
 
-output:
+`output:`
 
    `/<signature>/<width>x<height>/dashauth:requester(<requesterId>):contract(<contractId>):document(<documentType>):field(<field>):owner(<ownerId>):updatedAt(<updatedAt>)/filters:format(<format>)/<encodedImageUrl>`
 
-3. Thumbor_dash image retrieval URL
+#### 3. Thumbor_dash image retrieval URL
 
    `http://<thumbor_dash-server>/<signature>/<width>x<height>/dashauth:requester(<requesterId>):contract(<contractId>):document(<documentType>):field(<field>):owner(<ownerId>):updatedAt(<updatedAt>)/filters:format(<format>)/<encodedImageUrl>`
 
@@ -62,6 +64,8 @@ output:
 
 
 ## Example
+
+ This is a signed `thumbor_dash url`. Simply run `thumbor_dash` and paste this link in your browser.
 
    `http://localhost:8888/Ai-ZyWWtJ0MHUQAm0GAlBTQMZ_Y=/1200x800/dashauth:requester(GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7):contract(En3GRoMNAnt69firp32h3NEBxyveLcHQMUbwhDW2UqoX):document(thumbnailField):field(avatarUrl):owner(GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7):updatedAt(1627076771396)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg`
 
