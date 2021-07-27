@@ -53,7 +53,7 @@ BAN_DURATION = 10 # requester ban duration in minutes
 
    ```python
 
-   thumbor_dash-url --key="<security key>" --width=<width> --height=<height> --dashauth="requester(<requesterId>):contract(<contractId>):document(<documentType>):field(<avatarUrl>):owner(<ownerId>):updatedAt(<updatedAt>)" --filters="<filters>" <imageURL>
+   thumbor_dash-url --key="<SECURITY_KEY>" --width=<width> --height=<height> --dashauth="requester(<requesterId>):contract(<contractId>):document(<documentType>):field(<avatarUrl>):owner(<ownerId>):updatedAt(<updatedAt>)" --filters="<filters>" <imageURL>
 
    ```
 
