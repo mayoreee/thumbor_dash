@@ -1,6 +1,6 @@
 {
-    ownerId: Buffer.from(bs58.decode("GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7")),
-    contractId: "En3GRoMNAnt69firp32h3NEBxyveLcHQMUbwhDW2UqoX",
+    ownerId: Buffer.from(bs58.decode("26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ")),
+    contractId: "D6tjxCZzZobDQztc4S1PK7EDwm4CegLARpiKZn6jQc1R",
     documentType: "profile",
     field: "avatarUrl",
     resizeValues: [1, 1, 1200, 800]

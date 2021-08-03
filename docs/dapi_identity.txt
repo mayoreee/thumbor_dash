@@ -1,11 +1,11 @@
-{
+ {
   protocolVersion: 0,
-  id: 'GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7',
+  id: '26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ',
   publicKeys: [
     {
       id: 0,
       type: 0,
-      data: 'A6xopYy6tlqt/EOeMsdVh9g335sZf2G2nr1WGNOk03zG'
+      data: 'A+Rqd0Youa4eoDjl8IzsXIdNsEqNOK78hEwk/FPFUqAL'
     }
   ],
   balance: 0,

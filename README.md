@@ -81,7 +81,9 @@ BAN_DURATION = 10 # requester ban duration in minutes
 
    ```python
 
-   http://localhost:8888/Ai-ZyWWtJ0MHUQAm0GAlBTQMZ_Y=/1200x800/dashauth:requester(GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7):contract(En3GRoMNAnt69firp32h3NEBxyveLcHQMUbwhDW2UqoX):document(thumbnailField):field(avatarUrl):owner(GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7):updatedAt(1627076771396)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg
+   http://localhost:8888/58jw1ZEx29KXAm5fgjjMMo_CoHs=/1200x800/dashauth:requester(26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ):contract(D6tjxCZzZobDQztc4S1PK7EDwm4CegLARpiKZn6jQc1R):document(thumbnailField):field(avatarUrl):owner(26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ):updatedAt(1627948894242)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg
+
+
    
    ```
 
