@@ -1,4 +1,4 @@
-from thumbor_dash.error_handlers import BadRequestError, ForbiddenSignatureError, TooManyRequestsError
+from thumbor_dash.error_handlers import BadRequestError, ForbiddenSignatureError, TooManyRequestsError, DashPlatformError
 from urllib.parse import quote, unquote
 from thumbor_dash.context import ThumborDashRequestParameters
 from thumbor_dash.verifiers import url_field_verifier, image_size_verifier, access_status_verifier, thumbnail_size_verifier
@@ -83,8 +83,7 @@ class ThumborDashImagingHandler(ImagingHandler):
                     valid = signer.validate(url_signature.encode(), url_to_validate)
 
             if not valid:
-                error_handler.handle_error(self.context, self, BadRequestError)
-                self._error(400, "Malformed URL: %s" % url)
+                error_handler.handle_error(self.context, self, ForbiddenSignatureError)
                 return
 
 
@@ -111,7 +110,6 @@ class ThumborDashImagingHandler(ImagingHandler):
         updatedAt = body["updatedAt"] # the last time the document was updated
 
         # Verify user access status
-        print("Thumbor DASH STATUS: Verifying requester access status........" )
         checkAccessStatus = await access_status_verifier.verifyUserAccessStatus(requesterId, config)
 
         if checkAccessStatus:
@@ -127,14 +125,12 @@ class ThumborDashImagingHandler(ImagingHandler):
 
              try:
                  # Query DAPI for thumbnail document data
-                 print("Thumbor DASH STATUS: Querying DAPI for thumbnail document data......." )
                  thumbnail_document = dapiclient.getDocuments(data)
              except Exception as e:
-                 self._error(503, "(Dash Platform Service Error): An error occured with the dash platform service \n" + str(e))
+                 error_handler.handle_error(self.context, self, DashPlatformError)
                  return
              else:
                  #Request verification
-                 print("Thumbor DASH STATUS: Validating request........" )
                  MIN_RESIZE_WIDTH = thumbnail_document["resizeValues"][0]
                  MIN_RESIZE_HEIGHT = thumbnail_document["resizeValues"][1]
                  MAX_RESIZE_WIDTH = thumbnail_document["resizeValues"][2]

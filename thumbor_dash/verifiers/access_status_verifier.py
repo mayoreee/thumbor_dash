@@ -16,7 +16,6 @@ async def verifyUserAccessStatus(requester_id, config):
  
     if storage_get_result is None:
         storage_put_result = await update_requester_data(requester_id=requester_id, storage=storage, is_banned=False, last_accessed=datetimeToMillisecondsSinceEpoch(datetime.now()), usage_violation_count=0, next_access=0)
-        print("Thumbor DASH STATUS: Requester access verified")  
         return True
     else:
         requester_storage_data = loads(storage_get_result)
@@ -39,15 +38,12 @@ async def verifyUserAccessStatus(requester_id, config):
             if next_access <= current_time:
                 is_banned = False
                 usage_violation_count = 0
-                print("Thumbor DASH STATUS: Requester access verified") 
                 storage_put_result = await update_requester_data(requester_id=requester_id, storage=storage, is_banned=is_banned, last_accessed=current_time, usage_violation_count=usage_violation_count, next_access=next_access)
                 return True
-            else: 
-                print("Thumbor DASH STATUS: Requester temporarily banned. Try again later")     
+            else:   
                 storage_put_result = await update_requester_data(requester_id=requester_id, storage=storage, is_banned=is_banned, last_accessed=current_time, usage_violation_count=usage_violation_count, next_access=next_access)
                 return False
-        
-        print("Thumbor DASH STATUS: Requester access verified")      
+            
         storage_put_result = await update_requester_data(requester_id=requester_id, storage=storage, is_banned=is_banned, last_accessed=current_time, usage_violation_count=usage_violation_count, next_access=next_access)
         return True
         
