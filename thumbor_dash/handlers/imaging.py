@@ -1,22 +1,21 @@
-import imp
-import base58
-import cbor2
+from thumbor_dash.error_handlers import BadRequestError, ForbiddenSignatureError, TooManyRequestsError
 from urllib.parse import quote, unquote
-
 from thumbor_dash.context import ThumborDashRequestParameters
 from thumbor_dash.verifiers import url_field_verifier, image_size_verifier, access_status_verifier, thumbnail_size_verifier
 from thumbor_dash.dapiclient import dapiclient 
 from thumbor_dash.utils import dashauthParametersToJson
-
-
 from thumbor.handlers.imaging import ImagingHandler
+from thumbor_dash.error_handlers.sentry import ErrorHandler
 
+import base58
+import cbor2
 
 
 class ThumborDashImagingHandler(ImagingHandler):
 
-
     async def check_image(self, kwargs):
+        error_handler = ErrorHandler(self.context.config)
+
         if self.context.config.MAX_ID_LENGTH > 0:
             # Check if an image with an uuid exists in storage
             exists = await self.context.modules.storage.exists(
@@ -65,7 +64,7 @@ class ThumborDashImagingHandler(ImagingHandler):
             try:
                 quoted_hash = quote(self.context.request.hash)
             except KeyError:
-                self._error(400, "Invalid hash: %s" % self.context.request.hash)
+                error_handler.handle_error(self.context, self, ForbiddenSignatureError)
                 return
 
             url_to_validate = url.replace(
@@ -84,6 +83,7 @@ class ThumborDashImagingHandler(ImagingHandler):
                     valid = signer.validate(url_signature.encode(), url_to_validate)
 
             if not valid:
+                error_handler.handle_error(self.context, self, BadRequestError)
                 self._error(400, "Malformed URL: %s" % url)
                 return
 
@@ -130,7 +130,7 @@ class ThumborDashImagingHandler(ImagingHandler):
                  print("Thumbor DASH STATUS: Querying DAPI for thumbnail document data......." )
                  thumbnail_document = dapiclient.getDocuments(data)
              except Exception as e:
-                 self._error(503, "Dash Platform Service Error: " + str(e)) #TODO: Update when custom errors are available
+                 self._error(503, "(Dash Platform Service Error): An error occured with the dash platform service \n" + str(e))
                  return
              else:
                  #Request verification
@@ -145,10 +145,10 @@ class ThumborDashImagingHandler(ImagingHandler):
                  checkImageSize = image_size_verifier.verifyImageSize(thumbnail_width, thumbnail_height, MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT) # Verify image size
       
                  if (checkURLField and checkThumbnailSize and checkImageSize) == False:
-                     self._error(400, "Badly formatted or unallowed dashauth request values") #TODO: Update when custom errors are available
+                     error_handler.handle_error(self.context, self, BadRequestError)
                      return
         else:
-            self._error(403, "Permission denied. Requester is temporarily banned") #TODO: Update when custom errors are available
+            error_handler.handle_error(self.context, self, TooManyRequestsError)
             return
        
         return await self.execute_image_operations()        

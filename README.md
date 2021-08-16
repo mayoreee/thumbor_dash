@@ -34,16 +34,21 @@ MAX_HEIGHT = 800
 # Set security key
 SECURITY_KEY = "0"
 
-# Url signing method
+# Use custom Url signing method (sha256)
 URL_SIGNER = 'thumbor_dash.url_signers.base64_hmac_sha256'
 
-# Use only signed URL
+# Allow only signed URL
 ALLOW_UNSAFE_URL = False
 
 # Set user moderation rules
 REQUEST_TIME_LIMIT = 1 # time between requests in minutes
 USAGE_VIOLATION_LIMIT = 5 # total number of times a requester can violate the time limit before ban
 BAN_DURATION = 10 # requester ban duration in minutes
+
+# Use custom error handling
+USE_CUSTOM_ERROR_HANDLING = True
+ERROR_HANDLER_MODULE = 'thumbor_dash.error_handlers.sentry'
+
 ```
 
 ## Usage
