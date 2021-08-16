@@ -95,6 +95,35 @@ ERROR_HANDLER_MODULE = 'thumbor_dash.error_handlers.sentry'
    
    ```
 
+# Running thumbor_dash in Docker
+
+This is the fastest way to run `thumbor_dash`
+
+#### 1. Create a `thumbor.env.txt` file containing the environment variables
+
+```python
+
+MIN_WIDTH=1
+MIN_HEIGHT=1
+MAX_WIDTH=1200
+MAX_HEIGHT=800
+SECURITY_KEY=0
+REQUEST_TIME_LIMIT=1 
+USAGE_VIOLATION_LIMIT=5
+BAN_DURATION=10
+USE_CUSTOM_ERROR_HANDLING=True
+ALLOW_UNSAFE_URL=False
+URL_SIGNER=thumbor_dash.url_signers.base64_hmac_sha256
+ERROR_HANDLER_MODULE=thumbor_dash.error_handlers.sentry
+
+```
+
+#### 2. Start thumbor_dash server in Docker
+
+   `docker run -p 80:80 --env-file thumbor.env.txt mayoreee/thumbor_dash`
+
+Note: If running in Docker, `<thumbor_dash-server>` in the image request URL should be set to `localhost:80` instead of `localhost:8888`.
+   
 
 
 
