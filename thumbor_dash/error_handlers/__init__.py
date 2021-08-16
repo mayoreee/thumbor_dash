@@ -34,3 +34,7 @@ class UnsupportedMediaTypeError(Error):
 class TooManyRequestsError(Error):
     '''Client is temporarily banned'''
     pass
+
+class DashPlatformError(Error):
+    ''' "An error occured with the dash platform service'''
+    pass
