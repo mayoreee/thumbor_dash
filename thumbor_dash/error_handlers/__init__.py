@@ -36,5 +36,21 @@ class TooManyRequestsError(Error):
     pass
 
 class DashPlatformError(Error):
-    ''' "An error occured with the dash platform service'''
+    ''' An error occured with the dash platform service'''
+    pass
+
+class UnsignedURLError(Error):
+    '''URL is not signed'''
+    pass
+
+class UnsafeURLError(Error):
+    '''URL has unsafe but unsafe is not allowed '''
+    pass
+
+class UnspecifiedImageError(Error):
+    '''No original image was specified'''
+    pass
+
+class BlacklistedSourceError(Error):
+    '''Source image url has been blacklisted'''
     pass

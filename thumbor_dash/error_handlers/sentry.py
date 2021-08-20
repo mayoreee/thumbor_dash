@@ -1,4 +1,4 @@
-from thumbor_dash.error_handlers import BadRequestError, DashPlatformError, UnauthorizedUserError, PaymentError, ForbiddenSignatureError, NotFoundError, MethodNotAllowedError, UnsupportedMediaTypeError, TooManyRequestsError
+from thumbor_dash.error_handlers import BadRequestError, BlacklistedSourceError, DashPlatformError, UnauthorizedUserError, PaymentError, ForbiddenSignatureError, NotFoundError, MethodNotAllowedError, UnsafeURLError, UnsignedURLError, UnspecifiedImageError, UnsupportedMediaTypeError, TooManyRequestsError
 
 
 class ErrorHandler:
@@ -16,19 +16,27 @@ class ErrorHandler:
 
         # Custom error messages for thumbor_dash server
         self.ERROR_MESSAGES = {
-        400: "400 (bad request): the syntax was not respected",
-        401: "401 (unauthorized): the user does not exist",
-        402: "402 (payment required): in phase 2 only -> not enough funds on identity",
-        403: "403 (forbidden): the signature is incorrect",
-        404: "404 (not found): the image requested does not exist",
-        405: "405 (method not allowed): a method other than GET or HEAD was sent for the resource",
-        415: "415 (unsupported media type): client should not request again",
-        429: "429 (too many requests): client should stop making requests for a {} min period".format(self.BAN_DURATION),
-        503: "430 (Dash Platform Service Error): An error occured with the dash platform service \n" + str(exception)
+        BadRequestError: "400 (bad request): the syntax was not respected",
+        UnsignedURLError: "400 (unsigned request): URL does not have hash or unsafe, or has both",
+        UnsafeURLError: "400 (unsafe request) URL has unsafe but unsafe is not allowed by the config",
+        UnspecifiedImageError: "400 (unspecified image) No original image was specified in the given URL",
+        BlacklistedSourceError: "400 (blacklisted source) Source image url has been blacklisted",
+        UnauthorizedUserError: "401 (unauthorized): the user does not exist",
+        PaymentError: "402 (payment required): in phase 2 only -> not enough funds on identity",
+        ForbiddenSignatureError: "403 (forbidden): the signature is incorrect",
+        NotFoundError: "404 (not found): the image requested does not exist",
+        MethodNotAllowedError: "405 (method not allowed): a method other than GET or HEAD was sent for the resource",
+        UnsupportedMediaTypeError: "415 (unsupported media type): client should not request again",
+        TooManyRequestsError: "429 (too many requests): client should stop making requests for a {} min period".format(self.BAN_DURATION),
+        DashPlatformError: "504 (Dash Platform Service Error): An error occured with the dash platform service \n" + str(exception),
         }
         
-        exception_switcher = {
+        exception_code_switcher = {
         BadRequestError: 400,
+        UnsignedURLError: 400,
+        UnsafeURLError: 400,
+        UnspecifiedImageError: 400,
+        BlacklistedSourceError: 400,
         UnauthorizedUserError: 401,
         PaymentError: 402,
         ForbiddenSignatureError: 403,
@@ -39,10 +47,10 @@ class ErrorHandler:
         DashPlatformError: 503
         }
 
-        error_status_code = exception_switcher.get(exception, BadRequestError)
+        error_status_code = exception_code_switcher.get(exception, BadRequestError)
 
         handler.clear()
         handler.set_status(error_status_code)
-        handler.finish("<html><body>{}</body></html>".format(self.ERROR_MESSAGES[error_status_code])
+        handler.finish("<html><body>{}</body></html>".format(self.ERROR_MESSAGES[exception])
         )
 
