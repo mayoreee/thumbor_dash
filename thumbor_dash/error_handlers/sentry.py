@@ -16,7 +16,7 @@ class ErrorHandler:
 
         # Custom error messages for thumbor_dash server
         self.ERROR_MESSAGES = {
-        400: "401 (bad request): the syntax was not respected",
+        400: "400 (bad request): the syntax was not respected",
         401: "401 (unauthorized): the user does not exist",
         402: "402 (payment required): in phase 2 only -> not enough funds on identity",
         403: "403 (forbidden): the signature is incorrect",
