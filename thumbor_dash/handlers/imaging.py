@@ -1,4 +1,4 @@
-from thumbor_dash.error_handlers import BadRequestError, ForbiddenSignatureError, TooManyRequestsError, DashPlatformError
+from thumbor_dash.error_handlers import BadRequestError, BlacklistedSourceError, ForbiddenSignatureError, TooManyRequestsError, DashPlatformError, UnsafeURLError, UnsignedURLError, UnspecifiedImageError
 from urllib.parse import quote, unquote
 from thumbor_dash.context import ThumborDashRequestParameters
 from thumbor_dash.verifiers import url_field_verifier, image_size_verifier, access_status_verifier, thumbnail_size_verifier
@@ -28,7 +28,7 @@ class ThumborDashImagingHandler(ImagingHandler):
 
         kwargs["image"] = quote(kwargs["image"].encode("utf-8"))
         if not self.validate(kwargs["image"]):
-            self._error(400, "No original image was specified in the given URL")
+            error_handler.handle_error(self.context, self, UnspecifiedImageError)
             return
 
         kwargs["request"] = self.request
@@ -38,23 +38,17 @@ class ThumborDashImagingHandler(ImagingHandler):
         has_both = self.context.request.unsafe and self.context.request.hash
 
         if has_none or has_both:
-            self._error(400, "URL does not have hash or unsafe, or has both: %s" % url)
+            error_handler.handle_error(self.context, self, UnsignedURLError)
             return
 
         if self.context.request.unsafe and not self.context.config.ALLOW_UNSAFE_URL:
-            self._error(
-                400, "URL has unsafe but unsafe is not allowed by the config: %s" % url,
-            )
+            error_handler.handle_error(self.context, self, UnsafeURLError)
             return
 
         if self.context.config.USE_BLACKLIST:
             blacklist = await self.get_blacklist_contents()
             if self.context.request.image_url in blacklist:
-                self._error(
-                    400,
-                    "Source image url has been blacklisted: %s"
-                    % self.context.request.image_url,
-                )
+                error_handler.handle_error(self.context, self, BlacklistedSourceError)
                 return
 
         url_signature = self.context.request.hash
