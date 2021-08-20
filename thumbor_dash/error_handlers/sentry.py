@@ -24,7 +24,7 @@ class ErrorHandler:
         405: "405 (method not allowed): a method other than GET or HEAD was sent for the resource",
         415: "415 (unsupported media type): client should not request again",
         429: "429 (too many requests): client should stop making requests for a {} min period".format(self.BAN_DURATION),
-        430: "430 (Dash Platform Service Error): An error occured with the dash platform service \n" + str(exception)
+        503: "430 (Dash Platform Service Error): An error occured with the dash platform service \n" + str(exception)
         }
         
         exception_switcher = {
@@ -36,7 +36,7 @@ class ErrorHandler:
         MethodNotAllowedError: 405,
         UnsupportedMediaTypeError: 415,
         TooManyRequestsError: 429,
-        DashPlatformError: 430
+        DashPlatformError: 503
         }
 
         error_status_code = exception_switcher.get(exception, BadRequestError)
