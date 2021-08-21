@@ -55,7 +55,7 @@ class ContextTestCase(TestCase):
             port=8888,
             ip="0.0.0.0",
             config_path="/thumbor.conf",
-            keyfile="./tests/thumbor.key",
+            keyfile="./tests/fixtures/thumbor.key",
             log_level="debug",
             app_class="thumbor_dash.app.ThumborDashServiceApp",
         )
@@ -72,7 +72,7 @@ class ContextTestCase(TestCase):
             port=8888,
             ip="0.0.0.0",
             config_path="/thumbor.conf",
-            keyfile="./tests/thumbor.key",
+            keyfile="./tests/fixtures/thumbor.key",
             log_level="debug",
             app_class="server.app",
         )
@@ -91,7 +91,7 @@ class ServerParametersTestCase(TestCase):
             port=8888,
             ip="0.0.0.0",
             config_path="/thumbor.conf",
-            keyfile="./tests/thumbor.key",
+            keyfile="./tests/fixtures/thumbor.key",
             log_level="debug",
             app_class="app",
             fd="fd",
@@ -101,7 +101,7 @@ class ServerParametersTestCase(TestCase):
         expect(params.port).to_equal(8888)
         expect(params.ip).to_equal("0.0.0.0")
         expect(params.config_path).to_equal("/thumbor.conf")
-        expect(params.keyfile).to_equal("./tests/thumbor.key")
+        expect(params.keyfile).to_equal("./tests/fixtures/thumbor.key")
         expect(params.log_level).to_equal("debug")
         expect(params.app_class).to_equal("app")
         expect(params._security_key).to_equal(  # pylint: disable=protected-access
@@ -118,7 +118,7 @@ class ServerParametersTestCase(TestCase):
             port=8888,
             ip="0.0.0.0",
             config_path="/thumbor.conf",
-            keyfile="./tests/thumbor.key",
+            keyfile="./tests/fixtures/thumbor.key",
             log_level="debug",
             app_class="app",
             fd="fd",
