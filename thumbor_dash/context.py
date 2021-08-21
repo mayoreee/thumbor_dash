@@ -11,7 +11,7 @@ class ThumborDashContext(Context):
     Class responsible for containing:
     * Server Configuration Parameters (port, ip, key, etc);
     * Configurations read from config file (or defaults);
-    * Importer with imported modules (dashauth, engine, filters, detectors, etc);
+    * Importer with imported modules (engine, filters, detectors, etc);
     * Request Parameters (width, height, smart, meta, etc).
     Each instance of this class MUST be unique per request.
     This class should not be cached in the server.
@@ -54,7 +54,7 @@ class ThumborDashContext(Context):
 class ThumborDashContextImporter(ContextImporter):
     def __init__(self, context, importer):
         super().__init__(context, importer)
-        self.dashauth = importer.dashauth
+
 
 
 
