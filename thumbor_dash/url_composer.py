@@ -159,7 +159,7 @@ def get_options(arguments):
 
     if not arguments:
         sys.stdout.write(
-            "Error: The image argument is mandatory. For more information type thumbor-url -h\n"
+            "Error: The image argument is mandatory. For more information type thumbor_dash-url -h\n"
         )
         return None, None
 
@@ -230,7 +230,7 @@ def main(arguments=None):
     if not parsed_options.key and not config:
         sys.stdout.write(
             "Error: The -k or --key argument is mandatory."
-            " For more information type thumbor-url -h\n"
+            " For more information type thumbor_dash-url -h\n"
         )
         return None
 
