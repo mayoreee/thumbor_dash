@@ -3,7 +3,7 @@ from os.path import abspath, exists
 from thumbor.filters import FiltersFactory
 from thumbor.metrics.logger_metrics import Metrics
 from thumbor.threadpool import ThreadPool
-from thumbor.context import Context, ContextImporter, RequestParameters
+from thumbor.context import *
 
 
 class ThumborDashContext(Context):
