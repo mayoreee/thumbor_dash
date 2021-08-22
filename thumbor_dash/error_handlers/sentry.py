@@ -1,4 +1,4 @@
-from thumbor_dash.error_handlers import BadRequestError, BlacklistedSourceError, DashPlatformError, UnauthorizedUserError, PaymentError, ForbiddenSignatureError, NotFoundError, MethodNotAllowedError, UnsafeURLError, UnsignedURLError, UnspecifiedImageError, UnsupportedMediaTypeError, TooManyRequestsError
+from thumbor_dash.error_handlers import *
 
 
 class ErrorHandler:

@@ -2,6 +2,7 @@ import sys
 from thumbor_dash.app import ThumborDashServiceApp
 
 import tornado.ioloop
+from tornado.httpserver import HTTPServer
 import warnings
 from PIL import Image
 
