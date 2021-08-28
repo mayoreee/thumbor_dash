@@ -110,6 +110,7 @@ class ThumborDashImagingHandler(ImagingHandler):
              # DAPI thumbnail document request input data
              data = {
                  'contract_id': base58.b58decode(contractId),
+                 'owner_id': base58.b58decode(ownerId),
                  'document_type': documentType,
                  'where': cbor2.dumps([
                      ['ownerId', '==', base58.b58decode(ownerId)],
@@ -119,7 +120,7 @@ class ThumborDashImagingHandler(ImagingHandler):
 
              try:
                  # Query DAPI for thumbnail document data
-                 thumbnail_document = dapiclient.getDocuments(data)
+                 thumbnail_document = dapiclient.getDocuments(self, data)
              except Exception as e:
                  error_handler.handle_error(self.context, self, DashPlatformError)
                  return
