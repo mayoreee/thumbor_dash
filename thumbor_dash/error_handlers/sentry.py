@@ -24,6 +24,8 @@ class ErrorHandler:
         UnauthorizedUserError: "401 (unauthorized): the user does not exist",
         PaymentError: "402 (payment required): in phase 2 only -> not enough funds on identity",
         ForbiddenSignatureError: "403 (forbidden): the signature is incorrect",
+        NotFoundError: "404 (not found): the image requested does not exist",
+        MethodNotAllowedError: "405 (method not allowed): a method other than GET or HEAD was sent for the resource",
         UnsupportedMediaTypeError: "415 (unsupported media type): client should not request again",
         TooManyRequestsError: "429 (too many requests): client should stop making requests for a {} min period".format(self.BAN_DURATION),
         DashPlatformError: "503 (Dash Platform Service Error): An error occured with the dash platform service",
@@ -38,6 +40,8 @@ class ErrorHandler:
         UnauthorizedUserError: 401,
         PaymentError: 402,
         ForbiddenSignatureError: 403,
+        NotFoundError: 404,
+        MethodNotAllowedError: 405,
         UnsupportedMediaTypeError: 415,
         TooManyRequestsError: 429,
         DashPlatformError: 503
