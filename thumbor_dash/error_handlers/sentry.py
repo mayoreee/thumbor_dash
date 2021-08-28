@@ -28,7 +28,7 @@ class ErrorHandler:
         MethodNotAllowedError: "405 (method not allowed): a method other than GET or HEAD was sent for the resource",
         UnsupportedMediaTypeError: "415 (unsupported media type): client should not request again",
         TooManyRequestsError: "429 (too many requests): client should stop making requests for a {} min period".format(self.BAN_DURATION),
-        DashPlatformError: "503 (Dash Platform Service Error): An error occured with the dash platform service",
+        DashPlatformError: "503 (Dash Platform Service Error): Dash platform service is not available. Please retry later",
         }
         
         exception_code_switcher = {
