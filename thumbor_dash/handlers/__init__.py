@@ -8,7 +8,6 @@ from thumbor_dash.error_handlers.sentry import ErrorHandler
 # Base handler for Image API operations
 ##
 class ThumborDashImageApiHandler(ImageApiHandler):
-    
 
     def validate(self, body):
         error_handler = ErrorHandler(self.context.config)
