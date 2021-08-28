@@ -4,6 +4,9 @@ LABEL maintainer="mayoreee"
 
 VOLUME /data
 
+# Run unit tests
+RUN python -m unittest discover -s tests/ -p "*_test.py"
+
 # base OS packages
 RUN  \
     awk '$1 ~ "^deb" { $3 = $3 "-backports"; print; exit }' /etc/apt/sources.list > /etc/apt/sources.list.d/backports.list && \
