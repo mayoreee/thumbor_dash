@@ -49,9 +49,6 @@ BAN_DURATION = 10 # requester ban duration in minutes
 USE_CUSTOM_ERROR_HANDLING = True
 ERROR_HANDLER_MODULE = 'thumbor_dash.error_handlers.sentry'
 
-# Custom Image Loader
-LOADER = 'thumbor_dash.loaders.http_loader'
-
 # Custom Handler Lists
 HANDLER_LISTS = [
    'thumbor.handler_lists.healthcheck',
@@ -125,7 +122,6 @@ USE_CUSTOM_ERROR_HANDLING=True
 ALLOW_UNSAFE_URL=False
 URL_SIGNER=thumbor_dash.url_signers.base64_hmac_sha256
 ERROR_HANDLER_MODULE=thumbor_dash.error_handlers.sentry
-LOADER=thumbor_dash.loaders.http_loader
 HANDLER_LISTS=[thumbor.handler_lists.healthcheck,thumbor_dash.handler_lists.upload,thumbor.handler_lists.blacklist]
 
 ```
