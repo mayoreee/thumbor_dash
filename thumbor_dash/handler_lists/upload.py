@@ -1,7 +1,7 @@
 from typing import Any, cast
 
 from thumbor.handler_lists import HandlerList
-from thumbor.handlers.image_resource import ThumborDashImageResourceHandler
+from thumbor_dash.handlers.image_resource import ThumborDashImageResourceHandler
 from thumbor.handlers.upload import ImageUploadHandler
 
 
