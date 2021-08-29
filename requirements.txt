@@ -11,6 +11,7 @@ dapiclient==0.0.1
 derpconf==0.8.3
 distlib==0.3.2
 docutils==0.17.1
+envtpl==0.6.0
 filelock==3.0.12
 grpcio==1.39.0
 idna==3.2
