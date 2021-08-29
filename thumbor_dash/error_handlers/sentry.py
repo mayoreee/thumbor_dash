@@ -21,14 +21,14 @@ class ErrorHandler:
         UnsafeURLError: "400 (unsafe request) URL has unsafe but unsafe is not allowed by the config",
         UnspecifiedImageError: "400 (unspecified image) No original image was specified in the given URL",
         BlacklistedSourceError: "400 (blacklisted source) Source image url has been blacklisted",
-        UnauthorizedUserError: "401 (unauthorized): the user does not exist",
+        UnknownUserError: "401 (unauthorized): the user does not exist",
         PaymentError: "402 (payment required): in phase 2 only -> not enough funds on identity",
         ForbiddenSignatureError: "403 (forbidden): the signature is incorrect",
         NotFoundError: "404 (not found): the image requested does not exist",
         MethodNotAllowedError: "405 (method not allowed): a method other than GET or HEAD was sent for the resource",
         UnsupportedMediaTypeError: "415 (unsupported media type): client should not request again",
         TooManyRequestsError: "429 (too many requests): client should stop making requests for a {} min period".format(self.BAN_DURATION),
-        DashPlatformError: "503 (Dash Platform Service Error): An error occured with the dash platform service",
+        DashPlatformError: "503 (Dash Platform Service Error): Dash platform service is not available. Please retry later",
         }
         
         exception_code_switcher = {
@@ -37,7 +37,7 @@ class ErrorHandler:
         UnsafeURLError: 400,
         UnspecifiedImageError: 400,
         BlacklistedSourceError: 400,
-        UnauthorizedUserError: 401,
+        UnknownUserError: 401,
         PaymentError: 402,
         ForbiddenSignatureError: 403,
         NotFoundError: 404,

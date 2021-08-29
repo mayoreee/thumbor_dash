@@ -7,7 +7,7 @@ class BadRequestError(Error):
     '''The syntax was not respected'''
     pass
 
-class UnauthorizedUserError(Error):
+class UnknownUserError(Error):
     '''The user does not exist'''
     pass
 
