@@ -52,6 +52,13 @@ ERROR_HANDLER_MODULE = 'thumbor_dash.error_handlers.sentry'
 # Custom Image Loader
 LOADER = 'thumbor_dash.loaders.http_loader'
 
+# Custom Handler Lists
+HANDLER_LISTS = [
+   'thumbor.handler_lists.healthcheck',
+   'thumbor_dash.handler_lists.upload',
+   'thumbor.handler_lists.blacklist',
+]
+
 ```
 
 ## Usage
@@ -119,6 +126,7 @@ ALLOW_UNSAFE_URL=False
 URL_SIGNER=thumbor_dash.url_signers.base64_hmac_sha256
 ERROR_HANDLER_MODULE=thumbor_dash.error_handlers.sentry
 LOADER=thumbor_dash.loaders.http_loader
+HANDLER_LISTS=[thumbor.handler_lists.healthcheck,thumbor_dash.handler_lists.upload,thumbor.handler_lists.blacklist]
 
 ```
 
