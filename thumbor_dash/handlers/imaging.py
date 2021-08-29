@@ -2,7 +2,7 @@ from urllib.parse import quote, unquote
 from thumbor_dash.error_handlers import *
 from thumbor_dash.context import ThumborDashRequestParameters
 from thumbor_dash.verifiers import access_status_verifier, url_field_verifier, image_size_verifier, thumbnail_size_verifier
-from thumbor_dash import dapiclient 
+from thumbor_dash.dapiclient import dapiclient
 from thumbor_dash.utils import dashauthParametersToJson
 from thumbor.handlers.imaging import ImagingHandler
 from thumbor_dash.error_handlers.sentry import ErrorHandler
@@ -122,6 +122,7 @@ class ThumborDashImagingHandler(ImagingHandler):
                  # Query DAPI for thumbnail document data
                  thumbnail_document = dapiclient.getDocuments(self, data)
              except Exception as e:
+                 print (str(e))
                  error_handler.handle_error(self.context, self, DashPlatformError)
                  return
              else:

@@ -23,11 +23,11 @@ def getDocuments(data):
 
 def main():
     data = {
-        'contract_id': base58.b58decode('En3GRoMNAnt69firp32h3NEBxyveLcHQMUbwhDW2UqoX'),
+        'contract_id': base58.b58decode('D6tjxCZzZobDQztc4S1PK7EDwm4CegLARpiKZn6jQc1R'),
         'document_type': 'thumbnailField',
         'where': cbor2.dumps([
-            ['ownerId', '==', base58.b58decode('GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7')],
-            ['$updatedAt', '==', 1627076771396],
+            ['ownerId', '==', base58.b58decode('26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ')],
+            ['$updatedAt', '==', 1627948894242],
         ]),
     }
     result = getDocuments(data)    
