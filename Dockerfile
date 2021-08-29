@@ -4,9 +4,6 @@ LABEL maintainer="mayoreee"
 
 VOLUME /data
 
-# Run unit tests
-RUN python -m unittest discover -s tests/ -p "*_test.py"
-
 # base OS packages
 RUN  \
     awk '$1 ~ "^deb" { $3 = $3 "-backports"; print; exit }' /etc/apt/sources.list > /etc/apt/sources.list.d/backports.list && \
@@ -36,6 +33,11 @@ WORKDIR /app
 COPY requirements.txt /app/requirements.txt
 RUN pip install --trusted-host None --no-cache-dir \
    -r /app/requirements.txt
+
+# Run unit tests
+COPY tests /app/tests
+COPY thumbor_dash /app/thumbor_dash
+RUN python -m unittest discover -s /app/tests/ -p "*_test.py"
 
 COPY thumbor.conf.tpl /app/thumbor.conf.tpl
 
