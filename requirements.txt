@@ -30,7 +30,6 @@ protobuf==3.17.3
 Pygments==2.9.0
 pyparsing==2.4.7
 python-dateutil==2.8.2
-pytz==2021.1
 readme-renderer==29.0
 requests==2.26.0
 requests-toolbelt==0.9.1
