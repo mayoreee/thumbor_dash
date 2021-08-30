@@ -11,9 +11,7 @@ def getDocuments(handler, data):
 
     try:
         identity = client.getIdentity(data['owner_id'])
-        print(identity)
     except Exception as e:
-        print(str(e))
         error_handler.handle_error(handler.context, handler, UnknownUserError)
         return
 
