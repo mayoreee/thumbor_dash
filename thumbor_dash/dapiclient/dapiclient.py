@@ -3,10 +3,10 @@ import cbor2
 from thumbor_dash.error_handlers.sentry import ErrorHandler
 from thumbor_dash.error_handlers import *
 
-client = DAPIClient()
 
 
-def getDocuments(handler, data):
+def getDocuments(handler, data, seed_ip = None, mn_ip = None):
+    client = DAPIClient(seed_ip=seed_ip, mn_ip = mn_ip)
     error_handler = ErrorHandler(handler.context.config)
 
     try:

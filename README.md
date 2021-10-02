@@ -56,6 +56,20 @@ HANDLER_LISTS = [
    'thumbor.handler_lists.blacklist',
 ]
 
+# User-defined MN and IP list
+SEED_IP = 'seed-1.testnet.networks.dash.org'
+MN_LIST =  [
+            '34.219.81.129',
+            '34.221.42.205',
+            '34.208.88.128',
+            '54.189.162.193',
+            '34.220.124.90',
+            '54.201.242.241',
+            '54.68.10.46',
+            '34.210.81.39',
+            '18.237.47.243'
+            ]
+
 ```
 
 ## Usage
@@ -123,12 +137,15 @@ ALLOW_UNSAFE_URL=False
 URL_SIGNER=thumbor_dash.url_signers.base64_hmac_sha256
 ERROR_HANDLER_MODULE=thumbor_dash.error_handlers.sentry
 HANDLER_LISTS=[thumbor.handler_lists.healthcheck,thumbor_dash.handler_lists.upload,thumbor.handler_lists.blacklist]
+SEED_IP=seed-1.testnet.networks.dash.org
+MN_LIST=[34.219.81.129,34.221.42.205,34.208.88.128,54.189.162.193,34.220.124.90,54.201.242.241,54.68.10.46,34.210.81.39,18.237.47.243]
 
 ```
 
 #### 2. Start thumbor_dash server in Docker
 
    `docker run -p 80:80 --env-file thumbor.env.txt mayoreee/thumbor_dash`
+When your environment is not ARM-based, add the option `--platform linux/arm64/v8`
 
 Note: If running in Docker, `<thumbor_dash-server>` in the image request URL should be set to `localhost:80` instead of `localhost:8888`.
    

@@ -9,6 +9,7 @@ from thumbor_dash.error_handlers.sentry import ErrorHandler
 
 import base58
 import cbor2
+import random
 
 
 class ThumborDashImagingHandler(ImagingHandler):
@@ -120,7 +121,15 @@ class ThumborDashImagingHandler(ImagingHandler):
 
              try:
                  # Query DAPI for thumbnail document data
-                 thumbnail_document = dapiclient.getDocuments(self, data)
+                 MN_IP = None
+                 if (config.get("SEED_IP") is None):
+                     MN_LIST = config.MN_LIST
+                     SEED_IP = random.choice(MN_LIST)
+                     MN_IP = SEED_IP
+                 else:
+                     SEED_IP = config.SEED_IP
+
+                 thumbnail_document = dapiclient.getDocuments(self, data, seed_ip=SEED_IP, mn_ip=MN_IP)
              except Exception as e:
                  print (str(e))
                  error_handler.handle_error(self.context, self, DashPlatformError)

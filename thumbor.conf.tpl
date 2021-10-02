@@ -687,6 +687,15 @@ BAN_DURATION = {{ BAN_DURATION | default(10) }}
 
 ################################################################################
 
+################################### MASTERNODES ####################################
+# custom MN
+SEED_IP = {{ SEED_IP | default('') }} # time between requests in minutes
+
+# MN IP list
+MN_LIST = {{ UMN_LIST | default('') }} 
+
+################################################################################
+
 ############################## TC_AWS ##########################################
 TC_AWS_REGION = '{{ TC_AWS_REGION | default('eu-west-1') }}' # AWS Region
 
