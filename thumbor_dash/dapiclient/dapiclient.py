@@ -1,7 +1,9 @@
 from dapiclient.client import DAPIClient
-import cbor2
 from thumbor_dash.error_handlers.sentry import ErrorHandler
 from thumbor_dash.error_handlers import *
+
+import cbor2
+import base58
 
 
 

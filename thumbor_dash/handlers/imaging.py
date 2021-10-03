@@ -8,6 +8,7 @@ from thumbor.handlers.imaging import ImagingHandler
 from thumbor_dash.error_handlers.sentry import ErrorHandler
 
 import base58
+import base64
 import cbor2
 import random
 
@@ -71,7 +72,7 @@ class ThumborDashImagingHandler(ImagingHandler):
         # Identity key retrieval from DAPI
         requesterId = base58.b58decode(dashauthParametersToJson(request.dashauth)["requester"])
         identity = dapiclient.getIdentity(self, requesterId, seed_ip=SEED_IP, mn_ip=MN_IP)
-        identity_key = (base58.b58encode(identity['publicKeys'][0]['data'])).decode('utf-8')
+        identity_key = (base64.b64encode(identity['publicKeys'][0]['data'])).decode('utf-8')
 
         if url_signature:
             # Verify signature using identity key
