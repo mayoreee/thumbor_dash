@@ -62,6 +62,7 @@ def main(arguments=None):
     config = get_config(
         server_parameters.config_path, server_parameters.use_environment
     )
+
     configure_log(config, server_parameters.log_level.upper())
 
     validate_config(config, server_parameters)

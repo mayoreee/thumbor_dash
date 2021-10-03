@@ -11,6 +11,7 @@ import base58
 import base64
 import cbor2
 import random
+import os
 
 
 class ThumborDashImagingHandler(ImagingHandler):
@@ -22,8 +23,8 @@ class ThumborDashImagingHandler(ImagingHandler):
         MN_IP = None
         
 
-        if (config.get("SEED_IP") is None):
-             MN_LIST = config.MN_LIST
+        if ((config.get("SEED_IP") is None) or (os.getenv("SEED_IP") is None)):  
+             MN_LIST = str(config.get("MN_LIST")).split(",")  # Convert MN_LIST from comma-separated list to Array
              SEED_IP = random.choice(MN_LIST)
              MN_IP = SEED_IP
         else:
@@ -68,68 +69,73 @@ class ThumborDashImagingHandler(ImagingHandler):
                 return
 
         url_signature = self.context.request.hash
-        
-        # Identity key retrieval from DAPI
-        requesterId = base58.b58decode(dashauthParametersToJson(request.dashauth)["requester"])
-        identity = dapiclient.getIdentity(self, requesterId, seed_ip=SEED_IP, mn_ip=MN_IP)
-        identity_key = (base64.b64encode(identity['publicKeys'][0]['data'])).decode('utf-8')
 
-        if url_signature:
-            # Verify signature using identity key
-            signer = self.context.modules.url_signer(identity_key) 
+        identity_key = None
+        try:
+            # Identity key retrieval from DAPI
+            requesterId = base58.b58decode(dashauthParametersToJson(request.dashauth)["requester"])
+            identity = dapiclient.getIdentity(self, requesterId, seed_ip=SEED_IP, mn_ip=MN_IP)
+            print(identity)
+            identity_key = (base64.b64encode(identity['publicKeys'][0]['data'])).decode('utf-8')
+        except Exception as e:
+            return
+        else:
+             if url_signature:
+                 # Verify signature using identity key
+                 signer = self.context.modules.url_signer(identity_key) 
 
-            try:
-                quoted_hash = quote(self.context.request.hash)
-            except KeyError:
-                error_handler.handle_error(self.context, self, ForbiddenSignatureError)
-                return
+                 try:
+                     quoted_hash = quote(self.context.request.hash)
+                 except KeyError:
+                     error_handler.handle_error(self.context, self, ForbiddenSignatureError)
+                     return
 
-            url_to_validate = url.replace(
+                 url_to_validate = url.replace(
                 "/%s/" % self.context.request.hash, ""
             ).replace("/%s/" % quoted_hash, "")
 
-            valid = signer.validate(unquote(url_signature).encode(), url_to_validate)
+                 valid = signer.validate(unquote(url_signature).encode(), url_to_validate)
 
-            if not valid and self.context.config.STORES_CRYPTO_KEY_FOR_EACH_IMAGE:
-                # Retrieves security key for this image if it has been seen before
-                security_key = await self.context.modules.storage.get_crypto(
+                 if not valid and self.context.config.STORES_CRYPTO_KEY_FOR_EACH_IMAGE:
+                     # Retrieves security key for this image if it has been seen before
+                     security_key = await self.context.modules.storage.get_crypto(
                     self.context.request.image_url
                 )
-                if security_key is not None:
-                    signer = self.context.modules.url_signer(security_key)
-                    valid = signer.validate(url_signature.encode(), url_to_validate)
+                     if security_key is not None:
+                         signer = self.context.modules.url_signer(security_key)
+                         valid = signer.validate(url_signature.encode(), url_to_validate)
 
-            if not valid:
-                error_handler.handle_error(self.context, self, ForbiddenSignatureError)
-                return
+                 if not valid:
+                     error_handler.handle_error(self.context, self, ForbiddenSignatureError)
+                     return
 
 
         # <--------------------- Dash Platform Request Verification  ------------------------->
         
       
-        body = dashauthParametersToJson(request.dashauth) 
+             body = dashauthParametersToJson(request.dashauth) 
         
-        thumbnail_width = request.width # requested thumbnail width
-        thumbnail_height = request.height # requested thumbnail height
+             thumbnail_width = request.width # requested thumbnail width
+             thumbnail_height = request.height # requested thumbnail height
         
-        MIN_WIDTH = config.MIN_WIDTH  # minimum thumbnail width allowed
-        MAX_WIDTH = config.MAX_WIDTH # maximum thumbnail width allowed
-        MIN_HEIGHT = config.MIN_HEIGHT  # minimum thumbnail height allowed
-        MAX_HEIGHT = config.MAX_HEIGHT # maximum thumbnail height allowed
+             MIN_WIDTH = config.MIN_WIDTH  # minimum thumbnail width allowed
+             MAX_WIDTH = config.MAX_WIDTH # maximum thumbnail width allowed
+             MIN_HEIGHT = config.MIN_HEIGHT  # minimum thumbnail height allowed
+             MAX_HEIGHT = config.MAX_HEIGHT # maximum thumbnail height allowed
 
-        requesterId = body["requester"] # identity of whomever is making the request
-        contractId = body["contract"] # the contract whose document holds the image URL
-        documentType = body["document"] # the document whose instance holds the URL
-        field = body["field"] # the field of the URL
-        ownerId = body["owner"] # the owner of the document that is being requested
-        updatedAt = body["updatedAt"] # the last time the document was updated
+             requesterId = body["requester"] # identity of whomever is making the request
+             contractId = body["contract"] # the contract whose document holds the image URL
+             documentType = body["document"] # the document whose instance holds the URL
+             field = body["field"] # the field of the URL
+             ownerId = body["owner"] # the owner of the document that is being requested
+             updatedAt = body["updatedAt"] # the last time the document was updated
 
-        # Verify user access status
-        checkAccessStatus = await access_status_verifier.verifyUserAccessStatus(requesterId, config)
+             # Verify user access status
+             checkAccessStatus = await access_status_verifier.verifyUserAccessStatus(requesterId, config)
 
-        if checkAccessStatus:
-             # DAPI thumbnail document request input data
-             data = {
+             if checkAccessStatus:
+                 # DAPI thumbnail document request input data
+                 data = {
                  'contract_id': base58.b58decode(contractId),
                  'owner_id': base58.b58decode(ownerId),
                  'document_type': documentType,
@@ -139,32 +145,31 @@ class ThumborDashImagingHandler(ImagingHandler):
                      ]),
                 }  
 
-             try:
-                 # Query DAPI for thumbnail document data
-                 thumbnail_document = dapiclient.getDocuments(self, data, seed_ip=SEED_IP, mn_ip=MN_IP)
+                 try:
+                     # Query DAPI for thumbnail document data
+                     thumbnail_document = dapiclient.getDocuments(self, data, seed_ip=SEED_IP, mn_ip=MN_IP)
 
 
-             except Exception as e:
-                 print (str(e))
-                 error_handler.handle_error(self.context, self, DashPlatformError)
-                 return
-             else:
-                 #Request verification
-                 MIN_RESIZE_WIDTH = thumbnail_document["resizeValues"][0]
-                 MIN_RESIZE_HEIGHT = thumbnail_document["resizeValues"][1]
-                 MAX_RESIZE_WIDTH = thumbnail_document["resizeValues"][2]
-                 MAX_RESIZE_HEIGHT = thumbnail_document["resizeValues"][3]
-                
-                 checkURLField = url_field_verifier.verifyURLField(thumbnail_document, field) # Verify url field
-                 checkThumbnailSize = thumbnail_size_verifier.verifyThumbnailSize(thumbnail_width, thumbnail_height, MIN_RESIZE_WIDTH, MIN_RESIZE_HEIGHT, MAX_RESIZE_WIDTH, MAX_RESIZE_HEIGHT) # Verify requested thumbnail size
-                 checkImageSize = image_size_verifier.verifyImageSize(thumbnail_width, thumbnail_height, MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT) # Verify image size
-      
-                 if (checkURLField and checkThumbnailSize and checkImageSize) == False:
-                     error_handler.handle_error(self.context, self, BadRequestError)
+                 except Exception as e:
+                     error_handler.handle_error(self.context, self, DashPlatformError)
                      return
-        else:
-            error_handler.handle_error(self.context, self, TooManyRequestsError)
-            return
+                 else:
+                     #Request verification
+                     MIN_RESIZE_WIDTH = thumbnail_document["resizeValues"][0]
+                     MIN_RESIZE_HEIGHT = thumbnail_document["resizeValues"][1]
+                     MAX_RESIZE_WIDTH = thumbnail_document["resizeValues"][2]
+                     MAX_RESIZE_HEIGHT = thumbnail_document["resizeValues"][3]
+                
+                     checkURLField = url_field_verifier.verifyURLField(thumbnail_document, field) # Verify url field
+                     checkThumbnailSize = thumbnail_size_verifier.verifyThumbnailSize(thumbnail_width, thumbnail_height, MIN_RESIZE_WIDTH, MIN_RESIZE_HEIGHT, MAX_RESIZE_WIDTH, MAX_RESIZE_HEIGHT) # Verify requested thumbnail size
+                     checkImageSize = image_size_verifier.verifyImageSize(thumbnail_width, thumbnail_height, MIN_WIDTH, MIN_HEIGHT, MAX_WIDTH, MAX_HEIGHT) # Verify image size
+      
+                     if (checkURLField and checkThumbnailSize and checkImageSize) == False:
+                         error_handler.handle_error(self.context, self, BadRequestError)
+                         return
+             else:
+                 error_handler.handle_error(self.context, self, TooManyRequestsError)
+                 return
        
-        return await self.execute_image_operations()        
+             return await self.execute_image_operations()        
         
