@@ -8,6 +8,7 @@ from thumbor.handlers.imaging import ImagingHandler
 from thumbor_dash.error_handlers.sentry import ErrorHandler
 
 import base58
+import base64
 import cbor2
 import random
 
@@ -15,7 +16,19 @@ import random
 class ThumborDashImagingHandler(ImagingHandler):
 
     async def check_image(self, kwargs):
-        error_handler = ErrorHandler(self.context.config)
+        config = self.context.config # thumbor config
+        
+        error_handler = ErrorHandler(config)
+        MN_IP = None
+        
+
+        if (config.get("SEED_IP") is None):
+             MN_LIST = config.MN_LIST
+             SEED_IP = random.choice(MN_LIST)
+             MN_IP = SEED_IP
+        else:
+             SEED_IP = config.SEED_IP
+
 
         if self.context.config.MAX_ID_LENGTH > 0:
             # Check if an image with an uuid exists in storage
@@ -34,6 +47,8 @@ class ThumborDashImagingHandler(ImagingHandler):
 
         kwargs["request"] = self.request
         self.context.request = ThumborDashRequestParameters(**kwargs)
+        request = self.context.request # HTTP request
+
 
         has_none = not self.context.request.unsafe and not self.context.request.hash
         has_both = self.context.request.unsafe and self.context.request.hash
@@ -53,8 +68,15 @@ class ThumborDashImagingHandler(ImagingHandler):
                 return
 
         url_signature = self.context.request.hash
+        
+        # Identity key retrieval from DAPI
+        requesterId = base58.b58decode(dashauthParametersToJson(request.dashauth)["requester"])
+        identity = dapiclient.getIdentity(self, requesterId, seed_ip=SEED_IP, mn_ip=MN_IP)
+        identity_key = (base64.b64encode(identity['publicKeys'][0]['data'])).decode('utf-8')
+
         if url_signature:
-            signer = self.context.modules.url_signer(self.context.server.security_key)
+            # Verify signature using identity key
+            signer = self.context.modules.url_signer(identity_key) 
 
             try:
                 quoted_hash = quote(self.context.request.hash)
@@ -65,7 +87,7 @@ class ThumborDashImagingHandler(ImagingHandler):
             url_to_validate = url.replace(
                 "/%s/" % self.context.request.hash, ""
             ).replace("/%s/" % quoted_hash, "")
-            
+
             valid = signer.validate(unquote(url_signature).encode(), url_to_validate)
 
             if not valid and self.context.config.STORES_CRYPTO_KEY_FOR_EACH_IMAGE:
@@ -84,8 +106,6 @@ class ThumborDashImagingHandler(ImagingHandler):
 
         # <--------------------- Dash Platform Request Verification  ------------------------->
         
-        request = self.context.request # HTTP request
-        config = self.context.config # thumbor config
       
         body = dashauthParametersToJson(request.dashauth) 
         
@@ -121,15 +141,9 @@ class ThumborDashImagingHandler(ImagingHandler):
 
              try:
                  # Query DAPI for thumbnail document data
-                 MN_IP = None
-                 if (config.get("SEED_IP") is None):
-                     MN_LIST = config.MN_LIST
-                     SEED_IP = random.choice(MN_LIST)
-                     MN_IP = SEED_IP
-                 else:
-                     SEED_IP = config.SEED_IP
-
                  thumbnail_document = dapiclient.getDocuments(self, data, seed_ip=SEED_IP, mn_ip=MN_IP)
+
+
              except Exception as e:
                  print (str(e))
                  error_handler.handle_error(self.context, self, DashPlatformError)
