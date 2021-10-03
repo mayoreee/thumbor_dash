@@ -691,7 +691,7 @@ BAN_DURATION = {{ BAN_DURATION | default(10) }}
 # custom MN
 SEED_IP = '{{ SEED_IP | default('') }}'
 # MN IP list
-MN_LIST = '{{ UMN_LIST | default('') }}' 
+MN_LIST = '{{ MN_LIST | default('') }}' 
 
 ################################################################################
 
