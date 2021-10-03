@@ -62,10 +62,6 @@ def main(arguments=None):
     config = get_config(
         server_parameters.config_path, server_parameters.use_environment
     )
-    
-    # Convert MN_LIST from comma-separated list to a string Array
-    MN_LIST = str(config.get("MN_LIST")).split(",")
-    config.MN_LIST = MN_LIST
 
     configure_log(config, server_parameters.log_level.upper())
 
