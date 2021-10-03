@@ -31,9 +31,6 @@ MIN_HEIGHT = 1
 MAX_WIDTH = 1200
 MAX_HEIGHT = 800
 
-# Set security key
-SECURITY_KEY = "0"
-
 # Use custom Url signing method (sha256)
 URL_SIGNER = 'thumbor_dash.url_signers.base64_hmac_sha256'
 
@@ -82,7 +79,7 @@ MN_LIST =  [
 
    ```python
 
-   thumbor_dash-url --key="<SECURITY_KEY>" --width=<width> --height=<height> --dashauth="requester(<requesterId>):contract(<contractId>):document(<documentType>):field(<avatarUrl>):owner(<ownerId>):updatedAt(<updatedAt>)" --filters="<filters>" <imageURL>
+   thumbor_dash-url --key="<Requester Identity Key>" --width=<width> --height=<height> --dashauth="requester(<requesterId>):contract(<contractId>):document(<documentType>):field(<avatarUrl>):owner(<ownerId>):updatedAt(<updatedAt>)" --filters="<filters>" <imageURL>
 
    ```
 
@@ -110,7 +107,7 @@ MN_LIST =  [
 
    ```python
 
-   http://localhost:8888/MXd8uDwHf1xqp6YG0RzlkrmtdBaq1ZyzznPLJft1rl4=/1200x800/dashauth:requester(26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ):contract(D6tjxCZzZobDQztc4S1PK7EDwm4CegLARpiKZn6jQc1R):document(thumbnailField):field(avatarUrl):owner(26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ):updatedAt(1627948894242)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg
+   http://localhost:8888/tvus-5L0OIDxGNGtx7JIoRdAF7l4qJHW18ZFUW_Uo5I=/1200x800/dashauth:requester(26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ):contract(D6tjxCZzZobDQztc4S1PK7EDwm4CegLARpiKZn6jQc1R):document(thumbnailField):field(avatarUrl):owner(26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ):updatedAt(1627948894242)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg
 
 
    
@@ -128,7 +125,6 @@ MIN_WIDTH=1
 MIN_HEIGHT=1
 MAX_WIDTH=1200
 MAX_HEIGHT=800
-SECURITY_KEY=0
 REQUEST_TIME_LIMIT=1 
 USAGE_VIOLATION_LIMIT=5
 BAN_DURATION=10
