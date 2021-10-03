@@ -75,7 +75,6 @@ class ThumborDashImagingHandler(ImagingHandler):
             # Identity key retrieval from DAPI
             requesterId = base58.b58decode(dashauthParametersToJson(request.dashauth)["requester"])
             identity = dapiclient.getIdentity(self, requesterId, seed_ip=SEED_IP, mn_ip=MN_IP)
-            print(identity)
             identity_key = (base64.b64encode(identity['publicKeys'][0]['data'])).decode('utf-8')
         except Exception as e:
             return
