@@ -1,8 +1,9 @@
 # Signed url generation
-thumbor_dash-url --key="A+Rqd0Youa4eoDjl8IzsXIdNsEqNOK78hEwk/FPFUqAL" --width=1200 --height=800 --dashauth="requester(26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ):contract(D6tjxCZzZobDQztc4S1PK7EDwm4CegLARpiKZn6jQc1R):document(thumbnailField):field(avatarUrl):owner(26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ):updatedAt(1627948894242)" --filters="format(jpeg)" https://github.com/thumbor/thumbor/raw/master/example.jpg
+thumbor_dash-url --key="A+532E7tmUf/sOKklOC5ase4982Qg67tnj6a4Pgd5FwR" --width=1200 --height=800 --dashauth="requester(G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa):contract(HPvdCZ3sr2ACdSW6VeNVKKiYjUBnS4YkMv3sexzzTABJ):document(thumbnailField):field(avatarUrl):owner(G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa):updatedAt(1634748218973)" --filters="format(jpeg)" https://github.com/thumbor/thumbor/raw/master/example.jpg
 
 # Test url
-http://localhost:8888/htcSn-zhTxpiGTfQlM3h361TXNAqo6hsLUZmdxTmNFI=/1200x800/dashauth:requester(26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ):contract(D6tjxCZzZobDQztc4S1PK7EDwm4CegLARpiKZn6jQc1R):document(thumbnailField):field(avatarUrl):owner(26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ):updatedAt(1627948894242)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg
+http://localhost:8888/AErpxvb_DbFWZMXEprL2cX4qMM8yCEk0yOJgmxtrIjA=/1200x800/dashauth:requester(G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa):contract(HPvdCZ3sr2ACdSW6VeNVKKiYjUBnS4YkMv3sexzzTABJ):document(thumbnailField):field(avatarUrl):owner(G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa):updatedAt(1634748218973)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg
+
 
 # Using Docker Container
-http://localhost:/htcSn-zhTxpiGTfQlM3h361TXNAqo6hsLUZmdxTmNFI=/1200x800/dashauth:requester(26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ):contract(D6tjxCZzZobDQztc4S1PK7EDwm4CegLARpiKZn6jQc1R):document(thumbnailField):field(avatarUrl):owner(26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ):updatedAt(1627948894242)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg
+http://localhost:80/AErpxvb_DbFWZMXEprL2cX4qMM8yCEk0yOJgmxtrIjA=/1200x800/dashauth:requester(G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa):contract(HPvdCZ3sr2ACdSW6VeNVKKiYjUBnS4YkMv3sexzzTABJ):document(thumbnailField):field(avatarUrl):owner(G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa):updatedAt(1634748218973)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg

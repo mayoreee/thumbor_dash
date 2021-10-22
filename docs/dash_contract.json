@@ -32,10 +32,10 @@
           "resizeValues": {
             "type": "array",
             "items": {
-              "type": "number",
+              "type": "number"
             },
             "minItems": 4,
-            "maxItems": 4,
+            "maxItems": 4
           },
           "allowAnimatedGIFs": {
             "type": "boolean"
@@ -48,8 +48,8 @@
                 "ownerId": "asc"
               },
               {
-                "$updatedAt": "asc",
-              },
+                "$updatedAt": "asc"
+              }
             ]
           }
         ],
@@ -63,4 +63,4 @@
         ],
         "additionalProperties":false
     }
-  }
+}
