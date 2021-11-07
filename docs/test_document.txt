@@ -1,22 +1,22 @@
 {
-    ownerId: Buffer.from(bs58.decode("26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ")),
-    contractId: "D6tjxCZzZobDQztc4S1PK7EDwm4CegLARpiKZn6jQc1R",
-    documentType: "profile",
+    ownerId: Buffer.from(bs58.decode("G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa")),
+    contractId: "HPvdCZ3sr2ACdSW6VeNVKKiYjUBnS4YkMv3sexzzTABJ",
+    documentType: "thumbnailField",
     field: "avatarUrl",
     resizeValues: [1, 1, 1200, 800]
 }
 
  {
-  '$protocolVersion': 0,
-  '$id': '8RRth71JdR2wVN6mB39tGTytjxTtDrzDE3Tcovj9jML4',
+  '$protocolVersion': 1,
+  '$id': 'HFAM5MYSt94pivq918TWo9wBgC7iqm7Xo7o55XK9PXBW',
   '$type': 'thumbnailField',
-  '$dataContractId': 'En3GRoMNAnt69firp32h3NEBxyveLcHQMUbwhDW2UqoX',
-  '$ownerId': 'GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7',
+  '$dataContractId': 'HPvdCZ3sr2ACdSW6VeNVKKiYjUBnS4YkMv3sexzzTABJ',
+  '$ownerId': 'G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa',
   '$revision': 1,
   field: 'avatarUrl',
-  ownerId: 'GCAFKUdw7PtUcDEG8j3sicMJ4ngx1aTqCdb4HD5n5WZ7',
-  contractId: 'En3GRoMNAnt69firp32h3NEBxyveLcHQMUbwhDW2UqoX',
-  documentType: 'profile',
+  ownerId: 'G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa',
+  contractId: 'HPvdCZ3sr2ACdSW6VeNVKKiYjUBnS4YkMv3sexzzTABJ',
+  documentType: 'thumbnailField',
   resizeValues: [ 1, 1, 1200, 800 ],
-  '$updatedAt': 1627076771396
+  '$updatedAt': 1634748218973
 }

@@ -22,7 +22,6 @@ class ThumborDashImagingHandler(ImagingHandler):
         error_handler = ErrorHandler(config)
         MN_IP = None
         
-
         if ((config.get("SEED_IP") is None) or (os.getenv("SEED_IP") is None)):  
              MN_LIST = str(config.get("MN_LIST")).split(",")  # Convert MN_LIST from comma-separated list to Array
              SEED_IP = random.choice(MN_LIST)
@@ -72,12 +71,12 @@ class ThumborDashImagingHandler(ImagingHandler):
 
         identity_key = None
         try:
-            # Identity key retrieval from DAPI
-            requesterId = base58.b58decode(dashauthParametersToJson(request.dashauth)["requester"])
-            identity = dapiclient.getIdentity(self, requesterId, seed_ip=SEED_IP, mn_ip=MN_IP)
-            identity_key = (base64.b64encode(identity['publicKeys'][0]['data'])).decode('utf-8')
+             # Identity key retrieval from DAPI
+             requesterId = base58.b58decode(dashauthParametersToJson(request.dashauth)["requester"])
+             identity =  dapiclient.getIdentity(self, requesterId, seed_ip=SEED_IP, mn_ip=MN_IP)
+             identity_key = (base64.b64encode(identity['publicKeys'][0]['data'])).decode('utf-8')
         except Exception as e:
-            return
+             return
         else:
              if url_signature:
                  # Verify signature using identity key

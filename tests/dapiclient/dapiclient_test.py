@@ -1,38 +1,60 @@
+from logging import Handler
 from dapiclient.client import DAPIClient
 import cbor2
 import base58
+from thumbor.handlers.imaging import ImagingHandler
+from thumbor_dash.error_handlers.sentry import ErrorHandler
+from thumbor_dash.error_handlers import *
 
 
-client = DAPIClient()
+def getDocuments(handler, data, seed_ip = None, mn_ip = None):
+    client = DAPIClient(seed_ip=seed_ip, mn_ip = mn_ip)
 
-def getDocuments(data):
-    docs = client.getDocuments(
-        data['contract_id'],
-        data['document_type'],
-        data['where'],
-        limit=2,
-    )
+    try:
+        docs = client.getDocuments(
+             data['contract_id'],
+             data['document_type'],
+             data['where'],
+             limit=2, # Only one document
+        )
+    except Exception as e:
+        return e
+    else:
+        return docs[0]# Return the only document in the list
 
-    documents = []
-    
-    for  doc in docs:
-        documents.append(cbor2.loads(doc))
-    
-    return documents[0] # Only one document
+
+def getIdentity(handler, ownerId, seed_ip = None, mn_ip = None):
+    client = DAPIClient(seed_ip=seed_ip, mn_ip = mn_ip)
+
+    try:
+        identity = client.getIdentity(ownerId)
+    except Exception as e:
+        return e
+    else:   
+        return identity # Return the only document in the list
+
+
 
 
 def main():
+
+# Test getIdentity
+    ownerId = base58.b58decode("G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa")
+    identity = getIdentity(None,ownerId=ownerId,seed_ip="52.43.162.96", mn_ip="52.11.85.154")
+    print(str(identity))
+
+# Test getDocuments
     data = {
-        'contract_id': base58.b58decode('D6tjxCZzZobDQztc4S1PK7EDwm4CegLARpiKZn6jQc1R'),
+        'contract_id': base58.b58decode('HPvdCZ3sr2ACdSW6VeNVKKiYjUBnS4YkMv3sexzzTABJ'),
         'document_type': 'thumbnailField',
         'where': cbor2.dumps([
-            ['ownerId', '==', base58.b58decode('26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ')],
-            ['$updatedAt', '==', 1627948894242],
+            ['ownerId', '==', base58.b58decode('G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa')],
+            ['$updatedAt', '==', 1634748218973],
         ]),
     }
-    result = getDocuments(data)    
-    print(result)
-    
+    docs = getDocuments(ErrorHandler,data,seed_ip=None, mn_ip="34.219.81.129")    
+    print(str(docs))
+
    
 if __name__ == "__main__":
     main()
