@@ -47,9 +47,10 @@ USE_CUSTOM_ERROR_HANDLING = True
 ERROR_HANDLER_MODULE = 'thumbor_dash.error_handlers.sentry'
 
 # User-defined MN and IP list
-SEED_IP = 'seed-1.testnet.networks.dash.org'
 MN_LIST =  '34.219.81.129,34.221.42.205,34.208.88.128,54.189.162.193,34.220.124.90,54.201.242.241,54.68.10.46,34.210.81.39,18.237.47.243'
-            
+
+# Optional
+# SEED_IP = '<SEED IP>'
 
 ```
 
@@ -116,7 +117,6 @@ USE_CUSTOM_ERROR_HANDLING=True
 ALLOW_UNSAFE_URL=False
 URL_SIGNER=thumbor_dash.url_signers.base64_hmac_sha256
 ERROR_HANDLER_MODULE=thumbor_dash.error_handlers.sentry
-SEED_IP=seed-1.testnet.networks.dash.org
 MN_LIST=34.219.81.129,34.221.42.205,34.208.88.128,54.189.162.193,34.220.124.90,54.201.242.241,54.68.10.46,34.210.81.39,18.237.47.243
 
 ```
