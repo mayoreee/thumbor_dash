@@ -47,10 +47,8 @@ USE_CUSTOM_ERROR_HANDLING = True
 ERROR_HANDLER_MODULE = 'thumbor_dash.error_handlers.sentry'
 
 # User-defined MN and IP list
+SEED_IP = 'seed-1.testnet.networks.dash.org'
 MN_LIST =  '34.219.81.129,34.221.42.205,34.208.88.128,54.189.162.193,34.220.124.90,54.201.242.241,54.68.10.46,34.210.81.39,18.237.47.243'
-
-# Optional
-# SEED_IP = '<SEED IP>'
 
 ```
 
@@ -91,9 +89,8 @@ MN_LIST =  '34.219.81.129,34.221.42.205,34.208.88.128,54.189.162.193,34.220.124.
  This is a signed `thumbor_dash url`. Simply run `thumbor_dash` and paste this link in your browser.
 
    ```python
-
-   http://localhost:8888/htcSn-zhTxpiGTfQlM3h361TXNAqo6hsLUZmdxTmNFI=/1200x800/dashauth:requester(26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ):contract(D6tjxCZzZobDQztc4S1PK7EDwm4CegLARpiKZn6jQc1R):document(thumbnailField):field(avatarUrl):owner(26AxVi5bvYYaC94GmeTmqX21vzsSxar2a4imxSE8ULUQ):updatedAt(1627948894242)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg
-
+   
+   http://localhost:8888/AErpxvb_DbFWZMXEprL2cX4qMM8yCEk0yOJgmxtrIjA=/1200x800/dashauth:requester(G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa):contract(HPvdCZ3sr2ACdSW6VeNVKKiYjUBnS4YkMv3sexzzTABJ):document(thumbnailField):field(avatarUrl):owner(G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa):updatedAt(1634748218973)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg
 
    
    ```
@@ -117,6 +114,7 @@ USE_CUSTOM_ERROR_HANDLING=True
 ALLOW_UNSAFE_URL=False
 URL_SIGNER=thumbor_dash.url_signers.base64_hmac_sha256
 ERROR_HANDLER_MODULE=thumbor_dash.error_handlers.sentry
+SEED_IP=seed-1.testnet.networks.dash.org
 MN_LIST=34.219.81.129,34.221.42.205,34.208.88.128,54.189.162.193,34.220.124.90,54.201.242.241,54.68.10.46,34.210.81.39,18.237.47.243
 
 ```
