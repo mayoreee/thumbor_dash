@@ -122,6 +122,7 @@ MN_LIST=34.219.81.129,34.221.42.205,34.208.88.128,54.189.162.193,34.220.124.90,5
 #### 2. Start thumbor_dash server in Docker
 
    `docker run -p 80:80 --env-file thumbor.env.txt mayoreee/thumbor_dash`
+When your environment is not ARM-based, add the option `--platform linux/arm64/v8`
 
 Note: If running in Docker, `<thumbor_dash-server>` in the image request URL should be set to `localhost:80` instead of `localhost:8888`.
    
