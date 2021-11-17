@@ -18,18 +18,15 @@ class ThumborDashImagingHandler(ImagingHandler):
 
     async def check_image(self, kwargs):
         config = self.context.config # thumbor config
-        
         error_handler = ErrorHandler(config)
+       
         MN_IP = None
-        MN_LIST = str(config.get("MN_LIST")).split(",")  # Convert MN_LIST from comma-separated list to Array
-        
-        if (((config.get("SEED_IP") is None) or (os.getenv("SEED_IP") is None))
-            or (MN_LIST is not None)):            
-             SEED_IP = random.choice(MN_LIST)
-             MN_IP = SEED_IP          
-        else:
-             SEED_IP = config.SEED_IP
+        SEED_IP=config.SEED_IP   
+        MN_LIST = str(config.get("MN_LIST")).split(",")
 
+        if ((config.get("SEED_IP") is None)  or (os.getenv("SEED_IP") is None)) or (MN_LIST[0] is not "None"):                 
+             MN_IP = random.choice(MN_LIST) 
+        
 
         if self.context.config.MAX_ID_LENGTH > 0:
             # Check if an image with an uuid exists in storage
