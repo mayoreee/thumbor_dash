@@ -40,7 +40,7 @@ def main():
 
 # Test getIdentity
     ownerId = base58.b58decode("G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa")
-    identity = getIdentity(None,ownerId=ownerId,seed_ip="52.43.162.96", mn_ip="52.11.85.154")
+    identity = getIdentity(None,ownerId=ownerId,seed_ip='seed-1.testnet.networks.dash.org', mn_ip=None)
     print(str(identity))
 
 # Test getDocuments
@@ -52,8 +52,9 @@ def main():
             ['$updatedAt', '==', 1634748218973],
         ]),
     }
-    docs = getDocuments(ErrorHandler,data,seed_ip=None, mn_ip="34.219.81.129")    
+    docs = getDocuments(ErrorHandler,data,seed_ip='seed-1.testnet.networks.dash.org', mn_ip=None)    
     print(str(docs))
+
 
    
 if __name__ == "__main__":
