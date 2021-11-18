@@ -21,13 +21,19 @@ class ThumborDashImagingHandler(ImagingHandler):
         error_handler = ErrorHandler(config)
        
         MN_IP = None
-        SEED_IP=config.get("SEED_IP")   
-        MN_LIST=config.get("MN_LIST")
-        
-
-        if ((config.get("SEED_IP") is None)  or (os.getenv("SEED_IP") is None)) or (MN_LIST is not None):   
-             CONVERTED_MN_LIST = str(config.get("MN_LIST")).split(",")              
-             MN_IP = random.choice(CONVERTED_MN_LIST) 
+        SEED_IP = None
+         
+        if config.get("MN_LIST") is not None:      
+             MN_LIST = str(config.get("MN_LIST")).split(",")              
+             MN_IP = random.choice(MN_LIST) 
+        elif config.get("SEED_IP") is not None:
+            SEED_IP=config.get("SEED_IP")
+        else:
+             if os.getenv("MN_LIST") is not None:
+                 MN_LIST = str(os.getenv("MN_LIST")).split(",")              
+                 MN_IP = random.choice(MN_LIST) 
+             else:
+                 SEED_IP=os.getenv("SEED_IP")   
         
 
         if self.context.config.MAX_ID_LENGTH > 0:
