@@ -1,22 +1,16 @@
-{
-    ownerId: Buffer.from(bs58.decode("G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa")),
-    contractId: "HPvdCZ3sr2ACdSW6VeNVKKiYjUBnS4YkMv3sexzzTABJ",
-    documentType: "thumbnailField",
-    field: "avatarUrl",
-    resizeValues: [1, 1, 1200, 800]
-}
 
+Document:
  {
   '$protocolVersion': 1,
-  '$id': 'HFAM5MYSt94pivq918TWo9wBgC7iqm7Xo7o55XK9PXBW',
+  '$id': 'F7tsH7ZsXLRZ7s2jk6zpofd9gH6hfpZH3VMUVPaG6Hdj',
   '$type': 'thumbnailField',
-  '$dataContractId': 'HPvdCZ3sr2ACdSW6VeNVKKiYjUBnS4YkMv3sexzzTABJ',
-  '$ownerId': 'G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa',
+  '$dataContractId': 'Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr',
+  '$ownerId': '3GVAAkyWDK68V92Evy4jrnYyBJamri8bXQakWbMedr93',
   '$revision': 1,
   field: 'avatarUrl',
-  ownerId: 'G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa',
-  contractId: 'HPvdCZ3sr2ACdSW6VeNVKKiYjUBnS4YkMv3sexzzTABJ',
+  ownerId: '3GVAAkyWDK68V92Evy4jrnYyBJamri8bXQakWbMedr93',
+  contractId: 'Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr',
   documentType: 'thumbnailField',
   resizeValues: [ 1, 1, 1200, 800 ],
-  '$updatedAt': 1634748218973
+  '$updatedAt': 1648648831788
 }

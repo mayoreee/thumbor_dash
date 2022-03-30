@@ -1,12 +1,15 @@
 Identity:
  {
   protocolVersion: 1,
-  id: 'G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa',
+  id: '3GVAAkyWDK68V92Evy4jrnYyBJamri8bXQakWbMedr93',
   publicKeys: [
     {
       id: 0,
       type: 0,
-      data: 'A+532E7tmUf/sOKklOC5ase4982Qg67tnj6a4Pgd5FwR'
+      purpose: 0,
+      securityLevel: 0,
+      data: 'AzkvyH6Czn09/3THMdOFW89VSkBBrJgpk+T6GYCY3HJa',
+      readOnly: false
     }
   ],
   balance: 0,
