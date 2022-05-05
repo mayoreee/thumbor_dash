@@ -1,8 +1,8 @@
 from datetime import datetime
+import re
 
 def dashauthParametersToJson(params):
-    temp = params.split(":")
-
+    temp = re.split(r':(?![//])', params)
     result = {}
 
     for p in temp:
