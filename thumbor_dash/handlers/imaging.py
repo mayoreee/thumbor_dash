@@ -76,6 +76,7 @@ class ThumborDashImagingHandler(ImagingHandler):
         url_signature = self.context.request.hash
 
         identity_key = None
+      
         try:
              # Identity key retrieval from DAPI
              requesterId = base58.b58decode(dashauthParametersToJson(request.dashauth)["requester"])
