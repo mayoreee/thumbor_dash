@@ -47,6 +47,7 @@ class ThumborDashImagingHandler(ImagingHandler):
         url = self.request.path
 
         kwargs["image"] = quote(kwargs["image"].encode("utf-8"))
+      
         if not self.validate(kwargs["image"]):
             error_handler.handle_error(self.context, self, UnspecifiedImageError)
             return
