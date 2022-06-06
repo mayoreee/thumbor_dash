@@ -2,9 +2,9 @@ from datetime import datetime
 import re
 
 def dashauthParametersToJson(params):
-    temp = re.split(r':(?![//])', params)
+    temp = re.split(r':(?![//\d])', params)
     result = {}
-
+   
     for p in temp:
         key_value_pair = p.split("(")
         key = key_value_pair[0]
@@ -14,7 +14,7 @@ def dashauthParametersToJson(params):
         real_value = int(value) if key == "updatedAt" else value
 
         result[key] = real_value
-
+    
     return result
 
 
