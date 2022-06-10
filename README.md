@@ -90,7 +90,7 @@ MN_LIST =  '34.219.81.129,34.221.42.205,34.208.88.128,54.189.162.193,34.220.124.
 
    ```python
    
- http://localhost:8888/rtkRHMsPm8mzg1V2DUPEXIrcnVB04Q4d5PU0kqnj_Ak=/1200x800/dashauth:requester(3GVAAkyWDK68V92Evy4jrnYyBJamri8bXQakWbMedr93):contract(Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr):document(thumbnailField):field(avatarUrl):owner(3GVAAkyWDK68V92Evy4jrnYyBJamri8bXQakWbMedr93):updatedAt(1648648831788)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg
+http://localhost:8888/U6lnOyBbSbRmZoxIgj81unAoR-V2GhJj1lAAQ0846Nw=/1200x800/dashauth:requester(856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL):contract(DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5):document(thumbnailField):field(avatarUrl):owner(856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL):updatedAt(1654864287788)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg
 
 
    
