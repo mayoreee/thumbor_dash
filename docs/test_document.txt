@@ -2,15 +2,24 @@
 Document:
  {
   '$protocolVersion': 1,
-  '$id': 'F7tsH7ZsXLRZ7s2jk6zpofd9gH6hfpZH3VMUVPaG6Hdj',
+  '$id': '8PpjLR9UVBBLMWyguH8HFxf2DNeYhCfKjbngemW73yUi',
   '$type': 'thumbnailField',
-  '$dataContractId': 'Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr',
-  '$ownerId': '3GVAAkyWDK68V92Evy4jrnYyBJamri8bXQakWbMedr93',
+  '$dataContractId': 'DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5',
+  '$ownerId': '856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL',
   '$revision': 1,
   field: 'avatarUrl',
-  ownerId: '3GVAAkyWDK68V92Evy4jrnYyBJamri8bXQakWbMedr93',
-  contractId: 'Bw7U7xUiwoE5wkkrJxbBLdf442TiY63SDvCDZLNrzTHr',
+  ownerId: '856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL',
+  contractId: 'DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5',
   documentType: 'thumbnailField',
   resizeValues: [ 1, 1, 1200, 800 ],
-  '$updatedAt': 1648648831788
+  '$updatedAt': 1654864287788
+}
+
+data: 
+{
+  field: 'avatarUrl',
+  ownerId: '856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL',
+  contractId: 'DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5',
+  documentType: 'thumbnailField',
+  resizeValues: [ 1, 1, 1200, 800 ],
 }
