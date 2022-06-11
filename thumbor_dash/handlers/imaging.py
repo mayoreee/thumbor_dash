@@ -84,6 +84,7 @@ class ThumborDashImagingHandler(ImagingHandler):
              identity =  dapiclient.getIdentity(self, requesterId, seed_ip=SEED_IP, mn_ip=MN_IP)
              identity_key = (base64.b64encode(identity['publicKeys'][0]['data'])).decode('utf-8')
         except Exception as e:
+             print(e)
              return
         else:
              if url_signature:
