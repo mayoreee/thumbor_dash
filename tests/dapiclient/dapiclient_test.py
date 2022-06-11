@@ -27,7 +27,7 @@ def getIdentity(handler, ownerId, seed_ip = None, mn_ip = None):
     client = DAPIClient(seed_ip=seed_ip, mn_ip = mn_ip)
 
     try:
-        identity = client.getIdentity(ownerId)
+        identity = client.getIdentity(id=ownerId, prove=False)
     except Exception as e:
         return e
     else:   
@@ -39,17 +39,17 @@ def getIdentity(handler, ownerId, seed_ip = None, mn_ip = None):
 def main():
 
 # Test getIdentity
-    ownerId = base58.b58decode("G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa")
+    ownerId = base58.b58decode("856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL")
     identity = getIdentity(None,ownerId=ownerId,seed_ip='seed-1.testnet.networks.dash.org', mn_ip=None)
     print(str(identity))
 
 # Test getDocuments
     data = {
-        'contract_id': base58.b58decode('HPvdCZ3sr2ACdSW6VeNVKKiYjUBnS4YkMv3sexzzTABJ'),
+        'contract_id': base58.b58decode('DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5'),
         'document_type': 'thumbnailField',
         'where': cbor2.dumps([
-            ['ownerId', '==', base58.b58decode('G75gKVaN7BAz8GhKp9qk18o9Mf2JgCpRxLtzYGNs68Wa')],
-            ['$updatedAt', '==', 1634748218973],
+            ['ownerId', '==', base58.b58decode('856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL')],
+            ['$updatedAt', '==', 1654864287788],
         ]),
     }
     docs = getDocuments(ErrorHandler,data,seed_ip='seed-1.testnet.networks.dash.org', mn_ip=None)    

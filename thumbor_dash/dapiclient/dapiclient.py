@@ -30,12 +30,10 @@ def getIdentity(handler, ownerId, seed_ip = None, mn_ip = None):
     error_handler = ErrorHandler(handler.context.config)
 
     try:
-        identity = client.getIdentity(ownerId)
+        identity = client.getIdentity(id=ownerId, prove=False)
     except Exception as e:
         error_handler.handle_error(handler.context, handler, DashPlatformError)
         return
 
     else:   
         return identity # Return the identity
-
-
