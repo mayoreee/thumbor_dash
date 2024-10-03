@@ -1,17 +1,1 @@
-Identity:
- {
-  protocolVersion: 1,
-  id: '856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL',
-  publicKeys: [
-    {
-      id: 0,
-      type: 0,
-      purpose: 0,
-      securityLevel: 0,
-      data: 'AupCW+B0nNl8j/lccXuIPvlbdesyTTHnR/7gLrwde7qu',
-      readOnly: false
-    }
-  ],
-  balance: 9999442,
-  revision: 0
-}
+Identity ID: CbmEawiuxwJZPp3aJJkuM8Pw5CnMAkQvaQmTouLHcH2Q

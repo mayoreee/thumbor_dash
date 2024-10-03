@@ -1,8 +1,6 @@
 # Signed url generation
-thumbor_dash-url --key="AupCW+B0nNl8j/lccXuIPvlbdesyTTHnR/7gLrwde7qu" --width=1200 --height=800 --dashauth="requester(856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL):contract(DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5):document(thumbnailField):field(avatarUrl):owner(856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL):updatedAt(1654864287788)" --filters="format(jpeg)" https://github.com/thumbor/thumbor/raw/master/example.jpg
+thumbor_dash-url --key="A0mD8WFHW6sg+NQ1+HRf3yfL6cJDL+PyAKS8P7SL8CNp" --width=1200 --height=800 --dashauth="requester(CbmEawiuxwJZPp3aJJkuM8Pw5CnMAkQvaQmTouLHcH2Q):contract(CubPbDcDPCi3HhbSNRQfkZDYU6R2yPsPveHrWoCKJr1P):document(thumbnail):field(avatarUrl):owner(CbmEawiuxwJZPp3aJJkuM8Pw5CnMAkQvaQmTouLHcH2Q):updatedAt(1727625029657)" --filters="format(jpeg)" https://raw.githubusercontent.com/thumbor/thumbor/master/example.jpg
 
 # Test url
-http://localhost:8888/U6lnOyBbSbRmZoxIgj81unAoR-V2GhJj1lAAQ0846Nw=/1200x800/dashauth:requester(856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL):contract(DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5):document(thumbnailField):field(avatarUrl):owner(856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL):updatedAt(1654864287788)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg
+http://localhost:8888/wQ71tyl2OvFRVvHkrEWnbZp4dxE1E0fhaLcqbYgp8Uw=/1200x800/dashauth:requester(CbmEawiuxwJZPp3aJJkuM8Pw5CnMAkQvaQmTouLHcH2Q):contract(CubPbDcDPCi3HhbSNRQfkZDYU6R2yPsPveHrWoCKJr1P):document(thumbnail):field(avatarUrl):owner(CbmEawiuxwJZPp3aJJkuM8Pw5CnMAkQvaQmTouLHcH2Q):updatedAt(1727625029657)/filters:format(jpeg)/https%3A//raw.githubusercontent.com/thumbor/thumbor/master/example.jpg
 
-# Using Docker Container
-http://localhost:80/U6lnOyBbSbRmZoxIgj81unAoR-V2GhJj1lAAQ0846Nw=/1200x800/dashauth:requester(856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL):contract(DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5):document(thumbnailField):field(avatarUrl):owner(856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL):updatedAt(1654864287788)/filters:format(jpeg)/https%3A//github.com/thumbor/thumbor/raw/master/example.jpg

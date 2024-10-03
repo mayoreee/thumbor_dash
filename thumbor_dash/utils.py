@@ -1,4 +1,5 @@
 from datetime import datetime
+from urllib.parse import unquote, urlparse, urlunparse
 import re
 
 def dashauthParametersToJson(params):
@@ -21,3 +22,23 @@ def dashauthParametersToJson(params):
 def datetimeToMillisecondsSinceEpoch(dt):
     epoch = datetime.utcfromtimestamp(0)
     return (dt - epoch).total_seconds() * 1000.0
+
+
+def normalize_url(url):
+    # Decode percent-encoded characters
+    decoded_url = unquote(url)
+    
+    # Parse the URL into components
+    parsed_url = urlparse(decoded_url)
+    
+    # Normalize scheme and netloc (lowercase)
+    scheme = parsed_url.scheme.lower()
+    netloc = parsed_url.netloc.lower()
+    
+    # Remove trailing slashes
+    path = parsed_url.path.rstrip('/')
+    
+    # Reconstruct the URL without query parameters and fragments for a simpler comparison
+    normalized_url = urlunparse((scheme, netloc, path, '', '', ''))
+    
+    return normalized_url

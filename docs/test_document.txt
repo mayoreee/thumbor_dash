@@ -1,25 +1,36 @@
-
 Document:
  {
-  '$protocolVersion': 1,
-  '$id': '8PpjLR9UVBBLMWyguH8HFxf2DNeYhCfKjbngemW73yUi',
-  '$type': 'thumbnailField',
-  '$dataContractId': 'DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5',
-  '$ownerId': '856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL',
+  '$id': '2d1qyrzR75aM5quxjS2P9YetPmnRrADymoTcvB8Y57ci',
+  '$ownerId': 'CbmEawiuxwJZPp3aJJkuM8Pw5CnMAkQvaQmTouLHcH2Q',
+  avatarUrl: 'https://raw.githubusercontent.com/thumbor/thumbor/master/example.jpg',
   '$revision': 1,
-  field: 'avatarUrl',
-  ownerId: '856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL',
-  contractId: 'DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5',
-  documentType: 'thumbnailField',
-  resizeValues: [ 1, 1, 1200, 800 ],
-  '$updatedAt': 1654864287788
-}
-
-data: 
-{
-  field: 'avatarUrl',
-  ownerId: '856aSH6uEBaHpndZYXDk72NJbZqXokNSPGrs8nKbd7QL',
-  contractId: 'DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5',
-  documentType: 'thumbnailField',
-  resizeValues: [ 1, 1, 1200, 800 ],
+  '$createdAt': 1727625029657,
+  '$updatedAt': 1727625029657,
+  '$transferredAt': null,
+  '$createdAtBlockHeight': null,
+  '$updatedAtBlockHeight': null,
+  '$transferredAtBlockHeight': null,
+  '$createdAtCoreBlockHeight': null,
+  '$updatedAtCoreBlockHeight': null,
+  '$transferredAtCoreBlockHeight': null,
+  '$dataContract': {
+    '$format_version': '0',
+    id: 'CubPbDcDPCi3HhbSNRQfkZDYU6R2yPsPveHrWoCKJr1P',
+    config: {
+      '$format_version': '0',
+      canBeDeleted: false,
+      readonly: false,
+      keepsHistory: false,
+      documentsKeepHistoryContractDefault: false,
+      documentsMutableContractDefault: true,
+      documentsCanBeDeletedContractDefault: true,
+      requiresIdentityEncryptionBoundedKey: null,
+      requiresIdentityDecryptionBoundedKey: null
+    },
+    version: 1,
+    ownerId: 'CbmEawiuxwJZPp3aJJkuM8Pw5CnMAkQvaQmTouLHcH2Q',
+    schemaDefs: null,
+    documentSchemas: { thumbnail: [Object] }
+  },
+  '$type': 'thumbnail'
 }

@@ -1,16 +1,1 @@
-Contract registered:
- {
-  protocolVersion: 1,
-  type: 0,
-  signature: 'H8NdPjCn34xJyDNHh6coh5yMvGTuRsDE4VljxOmyLRYKZ3zPDbswe3+/9akzAAs1SNQtfpXsDsYD2h/eZTTjhOs=',
-  signaturePublicKeyId: 0,
-  dataContract: {
-    protocolVersion: 1,
-    '$id': 'DbBHu3Ct1zD1AYAiw58V7QXT22B3k7qRLDLfaXqiRQp5',
-    '$schema': 'https://schema.dash.org/dpp-0-4-0/meta/data-contract',
-    version: 1,
-    ownerId: 'DditGE3LBueV3EjTSW3rLbFn93kEBs3QdAtkJiuHUbMH',
-    documents: { thumbnailField: [Object] }
-  },
-  entropy: 'b35cj7Jw7J2+5wi/gUkEpXzfEq5VRtRvvmbDxQ/a/34='
-}
+Contract ID: CubPbDcDPCi3HhbSNRQfkZDYU6R2yPsPveHrWoCKJr1P
