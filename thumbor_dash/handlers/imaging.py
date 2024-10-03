@@ -1,7 +1,7 @@
 from urllib.parse import quote, unquote
 from thumbor_dash.error_handlers import *
 from thumbor_dash.context import ThumborDashRequestParameters
-from thumbor_dash.verifiers import access_status_verifier, url_field_verifier, image_size_verifier, thumbnail_size_verifier
+from thumbor_dash.verifiers import access_status_verifier
 from thumbor_dash.dapiclient import dapiclient
 from thumbor_dash.utils import dashauthParametersToJson
 from thumbor_dash.utils import normalize_url
@@ -151,7 +151,7 @@ class ThumborDashImagingHandler(ImagingHandler):
                      # Query DAPI for avatar url
                      avatar_url = dapiclient.getAvatarUrl(self, data, seed_ip=SEED_IP, mn_ip=MN_IP)
                      isAvatarUrlMatching = normalize_url(avatar_url) == normalize_url(request.image_url)
-                     
+
                  except Exception as e:
                      print(e)
                      error_handler.handle_error(self.context, self, DashPlatformError)
