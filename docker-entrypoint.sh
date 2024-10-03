@@ -15,9 +15,9 @@ if [ -n "$LOG_LEVEL" ]; then
     LOG_PARAMETER="-l $LOG_LEVEL"
 fi
 
-# Check if thumbor port is defined -> (default port 80)
+# Check if thumbor port is defined -> (default port 8888)
 if [ -z ${THUMBOR_PORT+x} ]; then
-    THUMBOR_PORT=80
+    THUMBOR_PORT=8888
 fi
 
 if [ "$1" = 'thumbor' ] || [ "$1" = 'circus' ]; then

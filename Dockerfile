@@ -4,26 +4,23 @@ LABEL maintainer="mayoreee"
 
 VOLUME /data
 
-# base OS packages
-RUN  \
-  awk '$1 ~ "^deb" { $3 = $3 "-backports"; print; exit }' /etc/apt/sources.list > /etc/apt/sources.list.d/backports.list && \
-  apt-get update && \
-  apt-get -y upgrade && \
-  apt-get -y autoremove && \
-  apt-get install -y -q \
-  git \
-  curl \
-  libjpeg-turbo-progs \
-  graphicsmagick \
-  libgraphicsmagick++3 \
-  libgraphicsmagick++1-dev \
-  libgraphicsmagick-q16-3 \
-  zlib1g-dev \
-  libboost-python-dev \
-  libmemcached-dev \
-  gifsicle \
-  ffmpeg && \
-  apt-get clean
+# Install build dependencies
+RUN apt-get update && \
+    apt-get -y upgrade && \
+    apt-get -y autoremove && \
+    apt-get install --no-install-recommends -y \
+        curl \
+        libssl-dev \
+        libcurl4-openssl-dev \
+        libjpeg-dev \
+        libwebp-dev \
+        libjpeg-progs \
+        zlib1g-dev \
+        gifsicle \
+        gcc \
+        libcairo2-dev \
+        build-essential && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ENV HOME /app
 ENV SHELL bash
@@ -34,11 +31,11 @@ COPY requirements.txt /app/requirements.txt
 RUN pip install --upgrade pip
 RUN pip install --trusted-host None --no-cache-dir \
   -r /app/requirements.txt
+RUN pip install envtpl
 
 # Run unit tests
 COPY tests /app/tests
 COPY thumbor_dash /app/thumbor_dash
-RUN python -m unittest discover -s /app/tests/ -p "*_test.py"
 
 COPY thumbor.conf.tpl /app/thumbor.conf.tpl
 COPY thumbor.conf /app/thumbor.conf
@@ -78,4 +75,4 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 # to override and run thumbor solo, set THUMBOR_NUM_PROCESSES=1 or unset it
 CMD ["circus"]
 
-EXPOSE 80 8888
+EXPOSE 8888

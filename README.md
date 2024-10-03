@@ -123,7 +123,7 @@ MN_LIST=35.165.50.126,52.10.229.11,54.149.33.167,52.24.124.162,54.187.14.232
 
 #### 2. Start thumbor_dash server in Docker
 
-   `docker run -p 80:80 --env-file thumbor.env.txt mayoreee/thumbor_dash`
+   `docker run -p 8888:8888 --env-file thumbor.env.txt mayoreee/thumbor_dash`
 
    
 
