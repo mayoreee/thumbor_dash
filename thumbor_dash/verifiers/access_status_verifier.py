@@ -13,13 +13,13 @@ async def verifyUserAccessStatus(requester_id, config):
 
     storage = RequestStorage()
     storage_get_result = await storage.get(requester_id=requester_id)
- 
+
     if storage_get_result is None:
         storage_put_result = await update_requester_data(requester_id=requester_id, storage=storage, is_banned=False, last_accessed=datetimeToMillisecondsSinceEpoch(datetime.now()), usage_violation_count=0, next_access=0)
         return True
     else:
         requester_storage_data = loads(storage_get_result)
-  
+        print(requester_storage_data)
         is_banned = requester_storage_data['is_banned']
         last_accessed = requester_storage_data['last_accessed']
         usage_violation_count = requester_storage_data['usage_violation_count']

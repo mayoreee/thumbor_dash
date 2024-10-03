@@ -137,7 +137,7 @@ class ThumborDashImagingHandler(ImagingHandler):
              # Verify user access status
              checkAccessStatus = await access_status_verifier.verifyUserAccessStatus(requesterId, config)
 
-             if 1>0:
+             if checkAccessStatus == True:
                  # DAPI thumbnail document request input data
                  data = {
                  'contract_id': base58.b58decode(contractId),
